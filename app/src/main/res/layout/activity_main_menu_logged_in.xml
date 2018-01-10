@@ -18,7 +18,7 @@
             android:layout_centerVertical="true">
 
             <TableRow android:layout_weight=".3">
-                <ImageButton android:src="@android:drawable/ic_menu_compass" android:layout_weight=".3" android:layout_height="match_parent"/>
+                <ImageButton android:src="@android:drawable/ic_menu_compass" android:layout_weight=".3" android:layout_height="match_parent" android:id="@+id/mapActivityBttn"/>
                 <ImageButton android:src="@android:drawable/ic_media_play" android:layout_weight=".3" android:layout_height="match_parent"/>
                 <ImageButton android:src="@android:drawable/ic_menu_crop" android:layout_weight=".3" android:layout_height="match_parent"/>
             </TableRow>

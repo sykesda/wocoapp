@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">The WoCo App</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string-array name="country_arrays">
+        <item>Marsh Residence Hall</item>
+        <item>Greene Residence Hall</item>
+        <item>Carlisle Residence Hall</item>
+        <item>Shipp Residence Hall</item>
+        <item>DuPre Residence Hall</item>
+        <item>Wightman Residence Hall</item>
+        <item>Lesesne Residence Hall</item>
+        <item>Phase V (MSBVC)</item>
+        <item>The Village</item>
+    </string-array>
+
 </resources>
