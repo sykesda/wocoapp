@@ -50,5 +50,6 @@
         <activity android:name=".settings" />
         <activity android:name=".terrier_bucks"></activity>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>
