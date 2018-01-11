@@ -41,7 +41,15 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".directory" />
+        <activity android:name=".food_menu" />
+        <activity android:name=".tv_guide" />
+        <activity android:name=".call_emergency_golf" />
+        <activity android:name=".class_schedule" />
+        <activity android:name=".settings" />
+        <activity android:name=".terrier_bucks"></activity>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>
