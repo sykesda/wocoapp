@@ -80,6 +80,14 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             }
         });
 
+        final ImageButton openDailyAnnouncements = (ImageButton) findViewById(R.id.dailyAnnouncementsBtn);
+        openDailyAnnouncements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDailyAnnouncements();
+            }
+        });
+
     }
 
     protected void openMap() {
@@ -120,6 +128,11 @@ public class MainMenuLoggedIn extends AppCompatActivity {
     protected void openSettings() {
         Intent settingsIntent = new Intent(this, settings.class);
         startActivity(settingsIntent);
+    }
+
+    protected void openDailyAnnouncements() {
+        Intent dailyAnnounceIntent = new Intent(this, daily_announcements.class);
+        startActivity(dailyAnnounceIntent);
     }
 
 
