@@ -23,6 +23,8 @@ public class daily_announcements extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> announcementList;
     ArrayList<HashMap<String, String>> eventList;
+    ArrayList<HashMap<String, String>> announcementAndEventList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class daily_announcements extends AppCompatActivity {
 
         announcementList = new ArrayList<>();
         eventList = new ArrayList<>();
+
+        announcementAndEventList = new ArrayList<>();
+
         lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
@@ -42,17 +47,20 @@ public class daily_announcements extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            Toast.makeText(daily_announcements.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
+            //Toast.makeText(daily_announcements.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
 
+        }
+
+        protected String buildAnnouncementURL(){
+            return "http://104.131.35.222:5000/announcements?date=2018-01-10";
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            //String url = "http://api.androidhive.info/contacts/";
-            String url = "http://104.131.35.222:5000/announcements?date=2018-01-10";
-            //String url = "http://104.131.35.222:5000/announcements?";
+
+            String url = buildAnnouncementURL();
+
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -74,6 +82,8 @@ public class daily_announcements extends AppCompatActivity {
                         String details = c.getString("details");
                         String email = c.getString("email");
                         String phone = c.getString("phone");
+                        // Date for announcements
+                        String datetime = "Today";
                         // Tags node is JSON Array
                         JSONArray tags = c.getJSONArray("tags");
                         // TODO unpack tags into needed format
@@ -88,6 +98,7 @@ public class daily_announcements extends AppCompatActivity {
                         announcementMap.put("details", details);
                         announcementMap.put("email", email);
                         announcementMap.put("phone", phone);
+                        announcementMap.put("datetime", datetime);
                         // TODO add tags here
                         //announcementMap.put("tags", tags);
 
@@ -170,16 +181,17 @@ public class daily_announcements extends AppCompatActivity {
 
             super.onPostExecute(result);
 
-            ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementList,
-                    R.layout.list_item, new String[]{ "title","contact"},
-                    new int[]{R.id.title, R.id.contact});
+            // Combine the 2 lists into 1
+            announcementAndEventList.addAll(announcementList);
+            announcementAndEventList.addAll(eventList);
 
-            ListAdapter eventAdapter = new SimpleAdapter(daily_announcements.this, eventList,
-                    R.layout.list_item, new String[]{ "title","contact"},
-                    new int[]{R.id.title, R.id.contact});
+            ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementAndEventList,
+                    R.layout.list_item, new String[]{ "datetime","title"},
+                    new int[]{R.id.datetime, R.id.title});
+
 
             lv.setAdapter(announcementAdapter);
-            //lv.setAdapter(eventAdapter);
+
 
         }
     }
