@@ -51,8 +51,26 @@ public class daily_announcements extends AppCompatActivity {
 
         }
 
-        protected String buildAnnouncementURL(){
+        private String buildAnnouncementURL(){
             return "http://104.131.35.222:5000/announcements?date=2018-01-10";
+        }
+
+        private String makeTagsStringFromJSONArray(JSONArray jsonTags){
+            ArrayList<String> tagsList = new ArrayList<String>();
+            try {
+                for (int k=0;k<jsonTags.length();k++){
+                    tagsList.add(jsonTags.getString(k));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // turn the array list of strings into a single string
+            String tags = "";
+            for (int i = 0; i < tagsList.size(); i++){
+                tags += tagsList.get(i);
+                tags += " ";
+            }
+            return tags.trim();
         }
 
         @Override
@@ -85,9 +103,8 @@ public class daily_announcements extends AppCompatActivity {
                         // Date for announcements
                         String datetime = "Today";
                         // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> announcementMap = new HashMap<>();
@@ -99,11 +116,10 @@ public class daily_announcements extends AppCompatActivity {
                         announcementMap.put("email", email);
                         announcementMap.put("phone", phone);
                         announcementMap.put("datetime", datetime);
-                        // TODO add tags here
-                        //announcementMap.put("tags", tags);
+                        // tags is a string of tags
+                        announcementMap.put("tags", tags);
 
                         // adding announcement to announcement list
-                        // TODO uncomment announcements
                         announcementList.add(announcementMap);
                     }
 
@@ -121,10 +137,8 @@ public class daily_announcements extends AppCompatActivity {
                         String cost = c.getString("cost");
                         String datetime = c.getString("datetime");
                         String location = c.getString("location");
-                        // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> eventMap = new HashMap<>();
@@ -138,15 +152,14 @@ public class daily_announcements extends AppCompatActivity {
                         eventMap.put("cost", cost);
                         eventMap.put("datetime", datetime);
                         eventMap.put("location", location);
-                        // TODO add tags here
-                        //eventMap.put("tags", tags);
+                        eventMap.put("tags", tags);
 
                         // adding eventMap to eventMap list
-                        // TODO process the events into some list
                         eventList.add(eventMap);
 
                     }
-
+                    // TODO create a list item at the bottom that links to adding your own announcement
+                    // TODO continued:      actually shrink listView and add the button that links to the form
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
