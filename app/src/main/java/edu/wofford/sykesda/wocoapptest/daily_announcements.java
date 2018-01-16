@@ -1,11 +1,15 @@
 package edu.wofford.sykesda.wocoapptest;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -40,6 +44,38 @@ public class daily_announcements extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
+
+
+        //Start: Code added and modified from tutorial
+        //https://www.raywenderlich.com/124438/android-listview-tutorial
+
+        final Context context = this;
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //
+                HashMap selectedAnnounce = announcementAndEventList.get(position);
+
+                // Create intent for passing information to detail activity
+                Intent announcementDetailIntent = new Intent(context, daily_announcements_details.class);
+
+                // Hashmap contents:
+                // title contact details email phone cost datetime location
+
+                // 3 //TODO Make sure the below is the best way to reference from the map
+                // TODO pass the whole object to the next activity
+                announcementDetailIntent.putExtra("title", (String) selectedAnnounce.get("title"));
+                announcementDetailIntent.putExtra("contact", (String) selectedAnnounce.get("contact"));
+
+                // 4
+                startActivity(announcementDetailIntent);
+            }
+
+        });
+
+        //End: Code added and modified from tutorial
+
 
     }
 
