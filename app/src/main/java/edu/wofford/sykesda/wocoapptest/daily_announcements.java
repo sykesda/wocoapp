@@ -1,9 +1,15 @@
 package edu.wofford.sykesda.wocoapptest;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -33,14 +39,84 @@ public class daily_announcements extends AppCompatActivity {
 
         announcementList = new ArrayList<>();
         eventList = new ArrayList<>();
-
         announcementAndEventList = new ArrayList<>();
 
         lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
 
+
+        //Start: Code added and modified from tutorial
+        //https://www.raywenderlich.com/124438/android-listview-tutorial
+
+        final Context context = this;
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //
+                HashMap selectedAnnounce = announcementAndEventList.get(position);
+
+                // Create intent for passing information to detail activity
+                Intent announcementDetailIntent = new Intent(context, daily_announcements_details.class);
+
+                // Hashmap contents:
+                // title contact details email phone cost datetime location
+
+                // 3 //TODO Make sure the below is the best way to reference from the map
+                // TODO pass the whole object to the next activity
+                announcementDetailIntent.putExtra("title", (String) selectedAnnounce.get("title"));
+                announcementDetailIntent.putExtra("contact", (String) selectedAnnounce.get("contact"));
+
+                // 4
+                startActivity(announcementDetailIntent);
+            }
+
+        });
+
+        //End: Code added and modified from tutorial
+
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.title_bar_menu, menu);
+
+        //MenuItem tagItem = menu.findItem(R.id.action_tags);
+
+        // Configure the search info and add any event listeners...
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_tags:
+                // User chose the "Tags" item, show the ...
+                // TODO finish this method
+                return true;
+
+            /*
+            case R.id.action_favorite:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+
+                startActivity(new Intent(this, SOMEACTIVITY.class));
+                return true;
+            */
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
 
     private class GetContacts extends AsyncTask<Void, Void, Void> {
         @Override
@@ -51,8 +127,26 @@ public class daily_announcements extends AppCompatActivity {
 
         }
 
-        protected String buildAnnouncementURL(){
+        private String buildAnnouncementURL(){
             return "http://104.131.35.222:5000/announcements?date=2018-01-10";
+        }
+
+        private String makeTagsStringFromJSONArray(JSONArray jsonTags){
+            ArrayList<String> tagsList = new ArrayList<String>();
+            try {
+                for (int k=0;k<jsonTags.length();k++){
+                    tagsList.add(jsonTags.getString(k));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // turn the array list of strings into a single string
+            String tags = "";
+            for (int i = 0; i < tagsList.size(); i++){
+                tags += tagsList.get(i);
+                tags += " ";
+            }
+            return tags.trim();
         }
 
         @Override
@@ -85,9 +179,8 @@ public class daily_announcements extends AppCompatActivity {
                         // Date for announcements
                         String datetime = "Today";
                         // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> announcementMap = new HashMap<>();
@@ -99,11 +192,10 @@ public class daily_announcements extends AppCompatActivity {
                         announcementMap.put("email", email);
                         announcementMap.put("phone", phone);
                         announcementMap.put("datetime", datetime);
-                        // TODO add tags here
-                        //announcementMap.put("tags", tags);
+                        // tags is a string of tags
+                        announcementMap.put("tags", tags);
 
                         // adding announcement to announcement list
-                        // TODO uncomment announcements
                         announcementList.add(announcementMap);
                     }
 
@@ -121,10 +213,8 @@ public class daily_announcements extends AppCompatActivity {
                         String cost = c.getString("cost");
                         String datetime = c.getString("datetime");
                         String location = c.getString("location");
-                        // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> eventMap = new HashMap<>();
@@ -138,15 +228,14 @@ public class daily_announcements extends AppCompatActivity {
                         eventMap.put("cost", cost);
                         eventMap.put("datetime", datetime);
                         eventMap.put("location", location);
-                        // TODO add tags here
-                        //eventMap.put("tags", tags);
+                        eventMap.put("tags", tags);
 
                         // adding eventMap to eventMap list
-                        // TODO process the events into some list
                         eventList.add(eventMap);
 
                     }
-
+                    // TODO create a list item at the bottom that links to adding your own announcement
+                    // TODO continued:      actually shrink listView and add the button that links to the form
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());

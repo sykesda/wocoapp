@@ -14,4 +14,7 @@
         <item>The Village</item>
     </string-array>
 
+
+    <string name="action_tag">Tags</string>
+
 </resources>
