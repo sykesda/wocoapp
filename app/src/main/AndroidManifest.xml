@@ -51,7 +51,7 @@
         <activity android:name=".class_schedule" />
         <activity android:name=".settings" />
         <activity android:name=".terrier_bucks" />
-        <activity android:name=".daily_announcements"></activity>
+        <activity android:name=".daily_announcements" android:label="Announce and Events"></activity>
     </application>
 
 </manifest>

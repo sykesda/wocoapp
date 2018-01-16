@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -33,7 +35,6 @@ public class daily_announcements extends AppCompatActivity {
 
         announcementList = new ArrayList<>();
         eventList = new ArrayList<>();
-
         announcementAndEventList = new ArrayList<>();
 
         lv = (ListView) findViewById(R.id.list);
@@ -41,6 +42,45 @@ public class daily_announcements extends AppCompatActivity {
         new GetContacts().execute();
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.title_bar_menu, menu);
+
+        //MenuItem tagItem = menu.findItem(R.id.action_tags);
+
+        // Configure the search info and add any event listeners...
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_tags:
+                // User chose the "Tags" item, show the ...
+                // TODO finish this method
+                return true;
+
+            /*
+            case R.id.action_favorite:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+
+                startActivity(new Intent(this, SOMEACTIVITY.class));
+                return true;
+            */
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
 
     private class GetContacts extends AsyncTask<Void, Void, Void> {
         @Override
