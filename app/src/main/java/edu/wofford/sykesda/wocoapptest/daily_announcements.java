@@ -178,7 +178,7 @@ public class daily_announcements extends AppCompatActivity {
                         String email = c.getString("email");
                         String phone = c.getString("phone");
                         // Date for announcements
-                        String datetime = "Today";
+                        String datetime = date + " 12:00:00";
                         // Tags node is JSON Array
                         JSONArray jsonTags = c.getJSONArray("tags");
                         String tags = makeTagsStringFromJSONArray(jsonTags);
