@@ -63,10 +63,11 @@ public class daily_announcements extends AppCompatActivity {
                 // Hashmap contents:
                 // title contact details email phone cost datetime location
 
-                // 3 //TODO Make sure the below is the best way to reference from the map
-                // TODO pass the whole object to the next activity
-                announcementDetailIntent.putExtra("title", (String) selectedAnnounce.get("title"));
-                announcementDetailIntent.putExtra("contact", (String) selectedAnnounce.get("contact"));
+                // 3
+
+                Bundle extras = new Bundle();
+                extras.putSerializable("announcementMap",selectedAnnounce);
+                announcementDetailIntent.putExtras(extras);
 
                 // 4
                 startActivity(announcementDetailIntent);
@@ -177,7 +178,7 @@ public class daily_announcements extends AppCompatActivity {
                         String email = c.getString("email");
                         String phone = c.getString("phone");
                         // Date for announcements
-                        String datetime = "Today";
+                        String datetime = date + " 12:00:00";
                         // Tags node is JSON Array
                         JSONArray jsonTags = c.getJSONArray("tags");
                         String tags = makeTagsStringFromJSONArray(jsonTags);
