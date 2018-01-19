@@ -38,12 +38,12 @@
 
     </LinearLayout>
 
-    <android.support.v7.app.AlertController.RecycleListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recyleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-    </android.support.v7.app.AlertController.RecycleListView>
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
