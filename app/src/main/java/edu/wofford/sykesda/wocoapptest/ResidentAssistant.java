@@ -1,14 +1,9 @@
 package edu.wofford.sykesda.wocoapptest;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,9 +21,11 @@ public class ResidentAssistant extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_resident_assistant);
         setContentView(R.layout.activity_call_emergency_golf);
         final ArrayList<ExampleItem> exampleList = new ArrayList<>();
+        // TODO fix the texts on each item
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Marsh", "Click here to make a call to request a golf cart ride."));
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Greene/Carlisle", "Click here call Campus Safety to report a crime on campus."));
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Shipp/DuPre", "Click here to call 9-1-1 to report a medical emergency."));

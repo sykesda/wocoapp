@@ -17,5 +17,6 @@
 
 
     <string name="action_tag">Tags</string>
+    <string name="action_add_announcement">Add Announcement</string>
 
 </resources>

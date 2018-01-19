@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -33,7 +32,9 @@ public class call_emergency_golf extends AppCompatActivity {
         exampleList.add(new ExampleItem(R.drawable.ic_campus_safety, "Campus Safety", "Click here to contact campus safety for a ride, report a crime, or if you're having car trouble."));
         exampleList.add(new ExampleItem(R.drawable.ic_anonymous_tip, "Report a Crime", "Click here to submit an anonymous tip."));
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Resident Assistant", "Click here to call the RA on duty for your building."));
-        exampleList.add(new ExampleItem(R.drawable.ic_maintenance, "Maintenance", "Call here to get to the maintenance request form."));
+        exampleList.add(new ExampleItem(R.drawable.ic_maintenance, "Maintenance", "Click here to get to the maintenance request form."));
+        exampleList.add(new ExampleItem(R.drawable.ic_nurse, "Health Services", "Click here to access the health services online portal"));
+        exampleList.add(new ExampleItem(R.drawable.ic_technology, "IT Help Desk", "Click here to call the IT help desk."));
 
         final ExampleItem golf_cart = exampleList.get(0);
         ExampleItem campus_safety = exampleList.get(1);
@@ -51,6 +52,15 @@ public class call_emergency_golf extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ExampleItem thing = exampleList.get(position);
+                if (position == 5){
+                    //TODO
+                }
+                if (position == 4){
+                    String url = "https://wofford.medicatconnect.com/home.aspx";
+                    Intent health_services = new Intent(Intent.ACTION_VIEW);
+                    health_services.setData(Uri.parse(url));
+                    startActivity(health_services);
+                }
                 if(position == 3){
                     String url = "http://fixit.wofford.edu/";
                     Intent maintenance = new Intent(Intent.ACTION_VIEW);
