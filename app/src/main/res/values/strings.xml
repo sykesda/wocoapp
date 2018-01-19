@@ -15,4 +15,7 @@
     </string-array>
     <string name="title_activity_directory">DirectoryActivity</string>
 
+
+    <string name="action_tag">Tags</string>
+
 </resources>
