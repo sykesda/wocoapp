@@ -25,12 +25,12 @@ public class ResidentAssistant extends AppCompatActivity {
         setContentView(R.layout.activity_resident_assistant);
         setContentView(R.layout.activity_call_emergency_golf);
         final ArrayList<ExampleItem> exampleList = new ArrayList<>();
-        // TODO fix the texts on each item
-        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Marsh", "Click here to make a call to request a golf cart ride."));
-        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Greene/Carlisle", "Click here call Campus Safety to report a crime on campus."));
-        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Shipp/DuPre", "Click here to call 9-1-1 to report a medical emergency."));
-        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Lesesne/Wightman", "Click here to call 9-1-1 to report a medical emergency."));
-        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Village", "Click here to call 9-1-1 to report a medical emergency."));
+        
+        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Marsh", "Click here to call the RA on duty at Marsh."));
+        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Greene/Carlisle", "Click here to call the RA on duty at Greene and Carlisle."));
+        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Shipp/DuPre", "Click here to call the RA on duty at Shipp and DuPre."));
+        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Lesesne/Wightman", "Click here to call the RA on duty at Lesesne and Wightman."));
+        exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Village", "Click here to call the RA on duty at the Village."));
 
         final ExampleItem golf_cart = exampleList.get(0);
         ExampleItem campus_safety = exampleList.get(1);
