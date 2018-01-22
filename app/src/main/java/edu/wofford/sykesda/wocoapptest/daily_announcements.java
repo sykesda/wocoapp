@@ -2,6 +2,7 @@ package edu.wofford.sykesda.wocoapptest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class daily_announcements extends AppCompatActivity {
@@ -63,10 +66,11 @@ public class daily_announcements extends AppCompatActivity {
                 // Hashmap contents:
                 // title contact details email phone cost datetime location
 
-                // 3 //TODO Make sure the below is the best way to reference from the map
-                // TODO pass the whole object to the next activity
-                announcementDetailIntent.putExtra("title", (String) selectedAnnounce.get("title"));
-                announcementDetailIntent.putExtra("contact", (String) selectedAnnounce.get("contact"));
+                // 3
+
+                Bundle extras = new Bundle();
+                extras.putSerializable("announcementMap",selectedAnnounce);
+                announcementDetailIntent.putExtras(extras);
 
                 // 4
                 startActivity(announcementDetailIntent);
@@ -76,6 +80,17 @@ public class daily_announcements extends AppCompatActivity {
 
         //End: Code added and modified from tutorial
 
+
+        // submit new announcement button
+        /*
+        final Button openAnnouncementForm = (Button) findViewById(R.id.addAnnouncementButton);
+        openAnnouncementForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitNewAnnouncement();
+            }
+        });
+        */
 
     }
 
@@ -99,14 +114,11 @@ public class daily_announcements extends AppCompatActivity {
                 // TODO finish this method
                 return true;
 
-            /*
-            case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
 
-                startActivity(new Intent(this, SOMEACTIVITY.class));
+            case R.id.submit_announcement:
+                submitNewAnnouncement();
                 return true;
-            */
+
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -128,7 +140,10 @@ public class daily_announcements extends AppCompatActivity {
         }
 
         private String buildAnnouncementURL(){
-            return "http://104.131.35.222:5000/announcements?date=2018-01-10";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = sdf.format(Calendar.getInstance().getTime());
+
+            return "http://104.131.35.222:5000/announcements?date="+currentDate;
         }
 
         private String makeTagsStringFromJSONArray(JSONArray jsonTags){
@@ -177,7 +192,7 @@ public class daily_announcements extends AppCompatActivity {
                         String email = c.getString("email");
                         String phone = c.getString("phone");
                         // Date for announcements
-                        String datetime = "Today";
+                        String datetime = date + " 12:00:00";
                         // Tags node is JSON Array
                         JSONArray jsonTags = c.getJSONArray("tags");
                         String tags = makeTagsStringFromJSONArray(jsonTags);
@@ -234,8 +249,6 @@ public class daily_announcements extends AppCompatActivity {
                         eventList.add(eventMap);
 
                     }
-                    // TODO create a list item at the bottom that links to adding your own announcement
-                    // TODO continued:      actually shrink listView and add the button that links to the form
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -283,5 +296,11 @@ public class daily_announcements extends AppCompatActivity {
 
 
         }
+    }
+
+
+    protected void submitNewAnnouncement () {
+        Intent browserIntent = new Intent((Intent.ACTION_VIEW), Uri.parse("http://www.wofford.edu/dailyannouncements/"));
+        startActivity(browserIntent);
     }
 }

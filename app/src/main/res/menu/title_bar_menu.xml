@@ -10,4 +10,10 @@
         android:title="@string/action_tag"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/submit_announcement"
+        android:icon="@drawable/add_announcement"
+        android:title="@string/action_add_announcement"
+        app:showAsAction="ifRoom"/>
+
 </menu>
