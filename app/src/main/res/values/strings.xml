@@ -13,5 +13,10 @@
         <item>Phase V (MSBVC)</item>
         <item>The Village</item>
     </string-array>
+    <string name="title_activity_directory">DirectoryActivity</string>
+
+
+    <string name="action_tag">Tags</string>
+    <string name="action_add_announcement">Add Announcement</string>
 
 </resources>

@@ -54,7 +54,7 @@ public class call_emergency_golf extends AppCompatActivity {
             public void onItemClick(int position) {
                 ExampleItem thing = exampleList.get(position);
                 if (position == 5){
-                    makePhoneCall("864-597-4357");
+                    makePhoneCall("8645974357");
                 }
                 if (position == 4){
                     String url = "https://wofford.medicatconnect.com/home.aspx";
@@ -95,4 +95,7 @@ public class call_emergency_golf extends AppCompatActivity {
         }
 
     }
+
+
+
 }

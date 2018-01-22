@@ -1,9 +1,16 @@
 package edu.wofford.sykesda.wocoapptest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -13,7 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class daily_announcements extends AppCompatActivity {
@@ -23,6 +32,8 @@ public class daily_announcements extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> announcementList;
     ArrayList<HashMap<String, String>> eventList;
+    ArrayList<HashMap<String, String>> announcementAndEventList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +42,134 @@ public class daily_announcements extends AppCompatActivity {
 
         announcementList = new ArrayList<>();
         eventList = new ArrayList<>();
+        announcementAndEventList = new ArrayList<>();
+
         lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
 
+
+        //Start: Code added and modified from tutorial
+        //https://www.raywenderlich.com/124438/android-listview-tutorial
+
+        final Context context = this;
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //
+                HashMap selectedAnnounce = announcementAndEventList.get(position);
+
+                // Create intent for passing information to detail activity
+                Intent announcementDetailIntent = new Intent(context, daily_announcements_details.class);
+
+                // Hashmap contents:
+                // title contact details email phone cost datetime location
+
+                // 3
+
+                Bundle extras = new Bundle();
+                extras.putSerializable("announcementMap",selectedAnnounce);
+                announcementDetailIntent.putExtras(extras);
+
+                // 4
+                startActivity(announcementDetailIntent);
+            }
+
+        });
+
+        //End: Code added and modified from tutorial
+
+
+        // submit new announcement button
+        /*
+        final Button openAnnouncementForm = (Button) findViewById(R.id.addAnnouncementButton);
+        openAnnouncementForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitNewAnnouncement();
+            }
+        });
+        */
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.title_bar_menu, menu);
+
+        //MenuItem tagItem = menu.findItem(R.id.action_tags);
+
+        // Configure the search info and add any event listeners...
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_tags:
+                // User chose the "Tags" item, show the ...
+                // TODO finish this method
+                return true;
+
+
+            case R.id.submit_announcement:
+                submitNewAnnouncement();
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
 
     private class GetContacts extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            Toast.makeText(daily_announcements.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
+            //Toast.makeText(daily_announcements.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
 
+        }
+
+        private String buildAnnouncementURL(){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = sdf.format(Calendar.getInstance().getTime());
+
+            return "http://104.131.35.222:5000/announcements?date="+currentDate;
+        }
+
+        private String makeTagsStringFromJSONArray(JSONArray jsonTags){
+            ArrayList<String> tagsList = new ArrayList<String>();
+            try {
+                for (int k=0;k<jsonTags.length();k++){
+                    tagsList.add(jsonTags.getString(k));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // turn the array list of strings into a single string
+            String tags = "";
+            for (int i = 0; i < tagsList.size(); i++){
+                tags += tagsList.get(i);
+                tags += " ";
+            }
+            return tags.trim();
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            //String url = "http://api.androidhive.info/contacts/";
-            String url = "http://104.131.35.222:5000/announcements?date=2018-01-10";
-            //String url = "http://104.131.35.222:5000/announcements?";
+
+            String url = buildAnnouncementURL();
+
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -74,10 +191,11 @@ public class daily_announcements extends AppCompatActivity {
                         String details = c.getString("details");
                         String email = c.getString("email");
                         String phone = c.getString("phone");
+                        // Date for announcements
+                        String datetime = date + " 12:00:00";
                         // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> announcementMap = new HashMap<>();
@@ -88,11 +206,11 @@ public class daily_announcements extends AppCompatActivity {
                         announcementMap.put("details", details);
                         announcementMap.put("email", email);
                         announcementMap.put("phone", phone);
-                        // TODO add tags here
-                        //announcementMap.put("tags", tags);
+                        announcementMap.put("datetime", datetime);
+                        // tags is a string of tags
+                        announcementMap.put("tags", tags);
 
                         // adding announcement to announcement list
-                        // TODO uncomment announcements
                         announcementList.add(announcementMap);
                     }
 
@@ -110,10 +228,8 @@ public class daily_announcements extends AppCompatActivity {
                         String cost = c.getString("cost");
                         String datetime = c.getString("datetime");
                         String location = c.getString("location");
-                        // Tags node is JSON Array
-                        JSONArray tags = c.getJSONArray("tags");
-                        // TODO unpack tags into needed format
-
+                        JSONArray jsonTags = c.getJSONArray("tags");
+                        String tags = makeTagsStringFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> eventMap = new HashMap<>();
@@ -127,15 +243,12 @@ public class daily_announcements extends AppCompatActivity {
                         eventMap.put("cost", cost);
                         eventMap.put("datetime", datetime);
                         eventMap.put("location", location);
-                        // TODO add tags here
-                        //eventMap.put("tags", tags);
+                        eventMap.put("tags", tags);
 
                         // adding eventMap to eventMap list
-                        // TODO process the events into some list
                         eventList.add(eventMap);
 
                     }
-
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -170,17 +283,24 @@ public class daily_announcements extends AppCompatActivity {
 
             super.onPostExecute(result);
 
-            ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementList,
-                    R.layout.list_item, new String[]{ "title","contact"},
-                    new int[]{R.id.title, R.id.contact});
+            // Combine the 2 lists into 1
+            announcementAndEventList.addAll(announcementList);
+            announcementAndEventList.addAll(eventList);
 
-            ListAdapter eventAdapter = new SimpleAdapter(daily_announcements.this, eventList,
-                    R.layout.list_item, new String[]{ "title","contact"},
-                    new int[]{R.id.title, R.id.contact});
+            ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementAndEventList,
+                    R.layout.list_item, new String[]{ "datetime","title"},
+                    new int[]{R.id.datetime, R.id.title});
+
 
             lv.setAdapter(announcementAdapter);
-            //lv.setAdapter(eventAdapter);
+
 
         }
+    }
+
+
+    protected void submitNewAnnouncement () {
+        Intent browserIntent = new Intent((Intent.ACTION_VIEW), Uri.parse("http://www.wofford.edu/dailyannouncements/"));
+        startActivity(browserIntent);
     }
 }
