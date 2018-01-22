@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -48,41 +49,91 @@ public class daily_announcements_details extends AppCompatActivity {
         }
 
         // pull out the different fields: title contact details email phone cost datetime location
-        title = (String) announcementMap.get("title");
-        contact = (String) announcementMap.get("contact");
-        details = (String) announcementMap.get("details");
-        email = (String) announcementMap.get("email");
-        phone = (String) announcementMap.get("phone");
-        cost = (String) announcementMap.get("cost");
-        datetime = (String) announcementMap.get("datetime");
-        location = (String) announcementMap.get("location");
+        title = "<b>Event Title: </b>" + (String) announcementMap.get("title");
+        contact = "<b>Contact: </b>" + (String) announcementMap.get("contact");
+        details = "<b>Details: </b>" + (String) announcementMap.get("details");
+        email = "<b>Email: </b>" + (String) announcementMap.get("email");
+        phone = "<b>Phone: </b>" + (String) announcementMap.get("phone");
+        datetime = "<b>Date & Time: </b>" + (String) announcementMap.get("datetime");
+
+        if (announcementMap.get("cost") == null){
+            cost = "<b>Cost: </b>N/A";
+        }else{
+            cost = "<b>Cost: </b>" + (String) announcementMap.get("cost");}
+
+        if (announcementMap.get("location") == null){
+            location = "<b>Location: </b>N/A";
+        }else{
+            location = "<b>Location: </b>" + (String) announcementMap.get("location");}
 
 
-        // 2
-        announcementTitle = findViewById(R.id.title);
-        announcementTitle.setText(title);
+        // Set the values of TextViews in the UI and parse for HTML
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementTitle = findViewById(R.id.title);
+            announcementTitle.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementTitle = findViewById(R.id.title);
+            announcementTitle.setText(Html.fromHtml(title));
+        }
 
-        announcementContact = findViewById(R.id.contact);
-        announcementContact.setText(contact);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementContact = findViewById(R.id.contact);
+            announcementContact.setText(Html.fromHtml(contact, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementContact = findViewById(R.id.contact);
+            announcementContact.setText(Html.fromHtml(contact));
+        }
 
-        announcementDetails = findViewById(R.id.details);
-        announcementDetails.setText(details);
+//        announcementContact = findViewById(R.id.contact);
+//        announcementContact.setText(contact);
 
-        announcementEmail = findViewById(R.id.email);
-        announcementEmail.setText(email);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementDetails = findViewById(R.id.details);
+            announcementDetails.setText(Html.fromHtml(details, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementDetails = findViewById(R.id.details);
+            announcementDetails.setText(Html.fromHtml(details));
+        }
 
-        announcementPhone = findViewById(R.id.phone);
-        announcementPhone.setText(phone);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementEmail = findViewById(R.id.email);
+            announcementEmail.setText(Html.fromHtml(email, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementEmail = findViewById(R.id.email);
+            announcementEmail.setText(Html.fromHtml(email));
+        }
 
-        announcementCost = findViewById(R.id.cost);
-        announcementCost.setText(cost);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementPhone = findViewById(R.id.phone);
+            announcementPhone.setText(Html.fromHtml(phone, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementPhone = findViewById(R.id.phone);
+            announcementPhone.setText(Html.fromHtml(phone));
+        }
 
-        announcementDatetime = findViewById(R.id.datetime);
-        announcementDatetime.setText(datetime);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementCost = findViewById(R.id.cost);
+            announcementCost.setText(Html.fromHtml(cost, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementCost = findViewById(R.id.cost);
+            announcementCost.setText(Html.fromHtml(cost));
+        }
 
-        announcementLocation = findViewById(R.id.location);
-        announcementLocation.setText(location);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementDatetime = findViewById(R.id.datetime);
+            announcementDatetime.setText(Html.fromHtml(datetime, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementDatetime = findViewById(R.id.datetime);
+            announcementDatetime.setText(Html.fromHtml(datetime));
+        }
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            announcementLocation = findViewById(R.id.location);
+            announcementLocation.setText(Html.fromHtml(location, Html.FROM_HTML_MODE_LEGACY));}
+        else{
+            announcementLocation = findViewById(R.id.location);
+            announcementLocation.setText(Html.fromHtml(location));
+        }
 
 
         // add to calendar button
