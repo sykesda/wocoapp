@@ -54,7 +54,7 @@ public class call_emergency_golf extends AppCompatActivity {
             public void onItemClick(int position) {
                 ExampleItem thing = exampleList.get(position);
                 if (position == 5){
-                    //TODO
+                    makePhoneCall("864-597-4357");
                 }
                 if (position == 4){
                     String url = "https://wofford.medicatconnect.com/home.aspx";
@@ -80,33 +80,19 @@ public class call_emergency_golf extends AppCompatActivity {
                     startActivity(anonymous_tip);
                 }
                 if (position ==0){
-                    makePhoneCall();
+                    makePhoneCall("8645974911");
                 }
             }
         });
     }
-    private void makePhoneCall(){
-        String number = "8645974911";
-        if (ContextCompat.checkSelfPermission(call_emergency_golf.this,
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(call_emergency_golf.this,
-                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
-
+    private void makePhoneCall(String number){
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + number));
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(dialIntent);
         } else {
-            String dial = "tel:" + number;
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            Log.e(TAG, "Can't resolve app for ACTION_DIAL Intent.");
         }
+
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_CALL) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                makePhoneCall();
-            }
-        }
-    }
-
-
-
 }
