@@ -25,7 +25,7 @@ public class ResidentAssistant extends AppCompatActivity {
         setContentView(R.layout.activity_resident_assistant);
         setContentView(R.layout.activity_call_emergency_golf);
         final ArrayList<ExampleItem> exampleList = new ArrayList<>();
-        // TODO fix the texts on each item
+        
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Marsh", "Click here to call the RA on duty at Marsh."));
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Greene/Carlisle", "Click here to call the RA on duty at Greene and Carlisle."));
         exampleList.add(new ExampleItem(R.drawable.ic_resident_assistants, "Shipp/DuPre", "Click here to call the RA on duty at Shipp and DuPre."));

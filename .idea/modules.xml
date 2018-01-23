@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\summu\Desktop\Wofford\J-Term-2018\wocoapp\WoCoAppTest.iml" filepath="C:\Users\summu\Desktop\Wofford\J-Term-2018\wocoapp\WoCoAppTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/wocoapp.iml" filepath="$PROJECT_DIR$/wocoapp.iml" />
-      <module fileurl="file://C:\Users\summu\Desktop\Wofford\J-Term-2018\wocoapp\.idea\wocoapp4.iml" filepath="C:\Users\summu\Desktop\Wofford\J-Term-2018\wocoapp\.idea\wocoapp4.iml" />
     </modules>
   </component>
 </project>
