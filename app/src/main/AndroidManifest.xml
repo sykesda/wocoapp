@@ -55,7 +55,8 @@
         <activity
             android:name=".daily_announcements"
             android:label="Announcements and Events" />
-        <activity android:name=".daily_announcements_details"></activity>
+        <activity android:name=".daily_announcements_details" />
+        <activity android:name=".daily_announce_tags_filtering"></activity>
     </application>
 
 </manifest>
