@@ -61,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setMinZoomPreference(15);
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         boolean alreadyMoved = FALSE;
 
