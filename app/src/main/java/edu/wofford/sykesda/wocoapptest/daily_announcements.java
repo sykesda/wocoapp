@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class daily_announcements extends AppCompatActivity {
 
@@ -34,6 +36,10 @@ public class daily_announcements extends AppCompatActivity {
     ArrayList<HashMap<String, String>> eventList;
     ArrayList<HashMap<String, String>> announcementAndEventList;
 
+    Set<String> tagSet;
+    Set<String> allTagsSet;
+    ArrayList modifiedTagsList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,8 @@ public class daily_announcements extends AppCompatActivity {
         announcementList = new ArrayList<>();
         eventList = new ArrayList<>();
         announcementAndEventList = new ArrayList<>();
+        tagSet = new HashSet<>();
+        allTagsSet = new HashSet<>();
 
         lv = (ListView) findViewById(R.id.list);
 
@@ -57,7 +65,6 @@ public class daily_announcements extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //
                 HashMap selectedAnnounce = announcementAndEventList.get(position);
 
                 // Create intent for passing information to detail activity
@@ -66,13 +73,10 @@ public class daily_announcements extends AppCompatActivity {
                 // Hashmap contents:
                 // title contact details email phone cost datetime location
 
-                // 3
-
                 Bundle extras = new Bundle();
                 extras.putSerializable("announcementMap",selectedAnnounce);
                 announcementDetailIntent.putExtras(extras);
 
-                // 4
                 startActivity(announcementDetailIntent);
             }
 
@@ -81,18 +85,26 @@ public class daily_announcements extends AppCompatActivity {
         //End: Code added and modified from tutorial
 
 
-        // submit new announcement button
-        /*
-        final Button openAnnouncementForm = (Button) findViewById(R.id.addAnnouncementButton);
-        openAnnouncementForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitNewAnnouncement();
-            }
-        });
-        */
-
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent announcementListIntent) {
+        if (resultCode == RESULT_OK) {
+            if (announcementListIntent.hasExtra("modifiedTagList")) {
+
+                Bundle tagBundle = announcementListIntent.getExtras();
+                if(tagBundle != null) {
+                    modifiedTagsList = (ArrayList) tagBundle.getSerializable("modifiedTagList");
+                }
+
+                displayTheList(true);
+            } else {
+                Log.e(TAG, "Modified Tags List not returned from child intent");
+            }
+        }
+    }
+
 
 
     @Override
@@ -111,7 +123,7 @@ public class daily_announcements extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_tags:
                 // User chose the "Tags" item, show the ...
-                // TODO finish this method
+                processTagFiltering();
                 return true;
 
 
@@ -146,7 +158,7 @@ public class daily_announcements extends AppCompatActivity {
             return "http://104.131.35.222:5000/announcements?date="+currentDate;
         }
 
-        private String makeTagsStringFromJSONArray(JSONArray jsonTags){
+        private String makeTagsStringAndTagsSetFromJSONArray(JSONArray jsonTags){
             ArrayList<String> tagsList = new ArrayList<String>();
             try {
                 for (int k=0;k<jsonTags.length();k++){
@@ -155,6 +167,9 @@ public class daily_announcements extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            // add tags to tagSet
+            tagSet.addAll(tagsList);
+            allTagsSet.addAll(tagsList);
             // turn the array list of strings into a single string
             String tags = "";
             for (int i = 0; i < tagsList.size(); i++){
@@ -195,7 +210,7 @@ public class daily_announcements extends AppCompatActivity {
                         String datetime = date + " 12:00:00";
                         // Tags node is JSON Array
                         JSONArray jsonTags = c.getJSONArray("tags");
-                        String tags = makeTagsStringFromJSONArray(jsonTags);
+                        String tags = makeTagsStringAndTagsSetFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> announcementMap = new HashMap<>();
@@ -229,7 +244,7 @@ public class daily_announcements extends AppCompatActivity {
                         String datetime = c.getString("datetime");
                         String location = c.getString("location");
                         JSONArray jsonTags = c.getJSONArray("tags");
-                        String tags = makeTagsStringFromJSONArray(jsonTags);
+                        String tags = makeTagsStringAndTagsSetFromJSONArray(jsonTags);
 
                         // temp hash map for single announcement
                         HashMap<String, String> eventMap = new HashMap<>();
@@ -282,19 +297,7 @@ public class daily_announcements extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             super.onPostExecute(result);
-
-            // Combine the 2 lists into 1
-            announcementAndEventList.addAll(announcementList);
-            announcementAndEventList.addAll(eventList);
-
-            ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementAndEventList,
-                    R.layout.list_item, new String[]{ "datetime","title"},
-                    new int[]{R.id.datetime, R.id.title});
-
-
-            lv.setAdapter(announcementAdapter);
-
-
+            displayTheList(false);
         }
     }
 
@@ -302,5 +305,58 @@ public class daily_announcements extends AppCompatActivity {
     protected void submitNewAnnouncement () {
         Intent browserIntent = new Intent((Intent.ACTION_VIEW), Uri.parse("http://www.wofford.edu/dailyannouncements/"));
         startActivity(browserIntent);
+    }
+
+    protected void processTagFiltering(){
+        // make new intent for tags
+        Intent tagsProcessingIntent = new Intent(this, daily_announce_tags_filtering.class);
+
+        // send tags over
+        ArrayList tagsList = new ArrayList(tagSet);
+        tagsProcessingIntent.putStringArrayListExtra("tagList", tagsList);
+        ArrayList allTagsList = new ArrayList(allTagsSet);
+        tagsProcessingIntent.putStringArrayListExtra("allTagsList", allTagsList);
+
+        startActivityForResult(tagsProcessingIntent, 100);
+
+    }
+
+    protected void displayTheList(boolean filtered){
+
+        if (!filtered) {
+            // Combine the 2 lists into 1
+            announcementAndEventList.clear();
+            announcementAndEventList.addAll(announcementList);
+            announcementAndEventList.addAll(eventList);
+        } else {
+            // results are filtered
+            ArrayList<HashMap<String, String>> tempAnnouncementAndEventList = new ArrayList<>();
+            tempAnnouncementAndEventList.addAll(announcementList);
+            tempAnnouncementAndEventList.addAll(eventList);
+
+            announcementAndEventList.clear();
+
+
+            // update tagSet
+            tagSet.clear();
+            tagSet.addAll(modifiedTagsList);
+
+            // add the announcements and events for the chosen tags
+            for (HashMap<String, String> map : tempAnnouncementAndEventList) {
+                for (String tag : tagSet) {
+                    if (map.get("tags").contains(tag) && !announcementAndEventList.contains(map)) {
+                        announcementAndEventList.add(map);
+                    }
+                }
+            }
+
+        }
+
+        ListAdapter announcementAdapter = new SimpleAdapter(daily_announcements.this, announcementAndEventList,
+                R.layout.list_item, new String[]{ "datetime","title"},
+                new int[]{R.id.datetime, R.id.title});
+
+
+        lv.setAdapter(announcementAdapter);
     }
 }

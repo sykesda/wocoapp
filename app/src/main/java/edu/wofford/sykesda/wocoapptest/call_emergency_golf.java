@@ -14,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class call_emergency_golf extends AppCompatActivity {
 
@@ -69,8 +71,14 @@ public class call_emergency_golf extends AppCompatActivity {
                     startActivity(maintenance);
                 }
                 if (position == 2){
-                    Intent resident_assistant = new Intent(call_emergency_golf.this, ResidentAssistant.class);
-                    startActivity(resident_assistant);
+                    Calendar cal = new GregorianCalendar();
+                    if (cal.get(Calendar.DAY_OF_WEEK) >= 1 && cal.get(Calendar.DAY_OF_WEEK) <=5 && cal.get(Calendar.HOUR_OF_DAY) >= 8 && cal.get(Calendar.HOUR_OF_DAY) <= 17){
+                        makePhoneCall("8645975100");
+                    }
+                    else{
+                        Intent resident_assistant = new Intent(call_emergency_golf.this, ResidentAssistant.class);
+                        startActivity(resident_assistant);
+                    }
 
                 }
                 if (position == 1) {
