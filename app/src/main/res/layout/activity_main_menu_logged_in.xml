@@ -30,14 +30,14 @@
                     android:id="@+id/tvGuideBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_media_play"
+
                     app:srcCompat="@mipmap/ic_channel_guide_foreground" />
 
                 <ImageButton
                     android:id="@+id/directoryBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_crop"
+
                     app:srcCompat="@mipmap/ic_directory_foreground" />
             </TableRow>
 
@@ -47,21 +47,21 @@
                     android:id="@+id/emerGolfActBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_view"
+
                     app:srcCompat="@mipmap/ic_hotline_foreground" />
 
                 <ImageButton
                     android:id="@+id/classScheduleBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_send"
+
                     app:srcCompat="@mipmap/ic_class_schedule_foreground" />
 
                 <ImageButton
                     android:id="@+id/dailyAnnouncementsBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_gallery"
+
                     app:srcCompat="@mipmap/ic_events_foreground" />
             </TableRow>
 
@@ -71,21 +71,21 @@
                     android:id="@+id/foodMenuBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_add"
+
                     app:srcCompat="@mipmap/ic_menu_foreground" />
 
                 <ImageButton
                     android:id="@+id/terrierBucksBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_call"
+
                     app:srcCompat="@mipmap/ic_virtual_id_foreground" />
 
                 <ImageButton
                     android:id="@+id/settingsBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
-                    android:src="@android:drawable/ic_menu_my_calendar"
+
                     app:srcCompat="@mipmap/ic_settings_foreground" />
 
             </TableRow>
