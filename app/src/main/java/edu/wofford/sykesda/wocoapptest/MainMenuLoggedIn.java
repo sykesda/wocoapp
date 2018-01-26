@@ -49,7 +49,13 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             }
         });
 
-
+        final ImageButton openSports = findViewById(R.id.sportsBtn);
+        openSports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSports();
+            }
+        });
 
         final ImageButton openFoodMenu = (ImageButton) findViewById(R.id.foodMenuBtn);
         openFoodMenu.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +149,13 @@ public class MainMenuLoggedIn extends AppCompatActivity {
 
         Intent dailyAnnounceIntent = new Intent(this, daily_announcements.class);
         startActivity(dailyAnnounceIntent);
+    }
+
+    protected void openSports(){
+        String url = "http://athletics.wofford.edu/";
+        Intent sportsIntent = new Intent(Intent.ACTION_VIEW);
+        sportsIntent.setData(Uri.parse(url));
+        startActivity(sportsIntent);
     }
 
     protected void openLaundry(){
