@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.wofford.sykesda.wocoapptest.Software_discounts">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/monsoon2"
+        android:layout_marginTop="37dp"
+        android:layout_toStartOf="@+id/monsoon2"
+        app:srcCompat="@drawable/ic_adobe" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="51dp"
+        app:srcCompat="@drawable/ic_amazon" />
+
+
+    <TextView
+        android:id="@+id/amazon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="Amazon"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/adobe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toEndOf="@+id/imageView5"
+        android:text="Adobe"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/monsoon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="Amazon student discount 50% off"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/lemon_grass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView5"
+        android:text="Adobe student discount for cloud"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+
+
+</RelativeLayout>
