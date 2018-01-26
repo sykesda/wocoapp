@@ -17,76 +17,108 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true">
 
-            <TableRow android:layout_weight=".3">
-
-                <ImageButton
-                    android:id="@+id/mapActivityBttn"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-
-                    app:srcCompat="@mipmap/ic_campus_map_foreground" />
-
-                <ImageButton
-                    android:id="@+id/tvGuideBtn"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-
-                    app:srcCompat="@mipmap/ic_channel_guide_foreground" />
-
-                <ImageButton
-                    android:id="@+id/directoryBtn"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-
-                    app:srcCompat="@mipmap/ic_directory_foreground" />
-            </TableRow>
-
-            <TableRow android:layout_weight=".3">
-
-                <ImageButton
-                    android:id="@+id/emerGolfActBtn"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-
-                    app:srcCompat="@mipmap/ic_hotline_foreground" />
-
-                <ImageButton
-                    android:id="@+id/classScheduleBtn"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-
-                    app:srcCompat="@mipmap/ic_class_schedule_foreground" />
+            <TableRow android:layout_weight=".4">
 
                 <ImageButton
                     android:id="@+id/dailyAnnouncementsBtn"
                     android:layout_height="match_parent"
-                    android:layout_weight=".3"
 
-                    app:srcCompat="@mipmap/ic_events_foreground" />
+                    android:layout_weight=".3"
+                    app:srcCompat="@mipmap/ic_daily_announcements_foreground" />
+
+                <ImageButton
+                    android:id="@+id/directoryBtn"
+
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_directory_foreground" />
+
+                <ImageButton
+                    android:id="@+id/emerGolfActBtn"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_quick_contacts_foreground" />
             </TableRow>
 
-            <TableRow android:layout_weight=".3">
+            <TableRow android:layout_weight=".4">
 
                 <ImageButton
                     android:id="@+id/foodMenuBtn"
                     android:layout_height="match_parent"
-                    android:layout_weight=".3"
 
-                    app:srcCompat="@mipmap/ic_menu_foreground" />
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_actual_food_foreground" />
 
                 <ImageButton
                     android:id="@+id/terrierBucksBtn"
                     android:layout_height="match_parent"
-                    android:layout_weight=".3"
 
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
                     app:srcCompat="@mipmap/ic_virtual_id_foreground" />
 
                 <ImageButton
-                    android:id="@+id/settingsBtn"
+                    android:id="@+id/mapActivityBttn"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_campus_map_foreground" />
+            </TableRow>
+
+            <TableRow android:layout_weight=".4">
+
+                <ImageButton
+                    android:id="@+id/aviBtn"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_avi_foreground" />
 
-                    app:srcCompat="@mipmap/ic_settings_foreground" />
+                <ImageButton
+                    android:id="@+id/studyBtn"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_study_foreground" />
+
+                <ImageButton
+                    android:id="@+id/laundryBtn"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_laundry_foreground" />
+            </TableRow>
+
+            <TableRow android:layout_weight=".4">
+
+                <ImageButton
+                    android:id="@+id/tvGuideBtn"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_tv_guide_foreground" />
+
+                <ImageButton
+                    android:id="@+id/sportsBtn"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_sports_foreground" />
+
+                <ImageButton
+                    android:id="@+id/donateBtn"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_donate_foreground" />
 
             </TableRow>
         </TableLayout>

@@ -1,6 +1,7 @@
 package edu.wofford.sykesda.wocoapptest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,13 +49,7 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             }
         });
 
-        final ImageButton openClassSchedule = (ImageButton) findViewById(R.id.classScheduleBtn);
-        openClassSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openClassSchedule();
-            }
-        });
+
 
         final ImageButton openFoodMenu = (ImageButton) findViewById(R.id.foodMenuBtn);
         openFoodMenu.setOnClickListener(new View.OnClickListener() {
@@ -72,11 +67,21 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             }
         });
 
-        final ImageButton openSettings = (ImageButton) findViewById(R.id.settingsBtn);
-        openSettings.setOnClickListener(new View.OnClickListener() {
+
+
+//        final ImageButton openSettings = (ImageButton) findViewById(R.id.settingsBtn);
+//        openSettings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openSettings();
+//            }
+//        });
+
+        final ImageButton openLibrary = findViewById(R.id.laundryBtn);
+        openLibrary.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                openSettings();
+            public void onClick(View v){
+                openLaundry();
             }
         });
 
@@ -85,6 +90,14 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openDailyAnnouncements();
+            }
+        });
+
+        final ImageButton openDonate = findViewById(R.id.donateBtn);
+        openDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDonate();
             }
         });
 
@@ -110,10 +123,6 @@ public class MainMenuLoggedIn extends AppCompatActivity {
         startActivity(directory);
     }
 
-    protected void openClassSchedule() {
-        Intent classSched = new Intent(this, class_schedule.class);
-        startActivity(classSched);
-    }
 
     protected void openFoodMenu() {
         Intent foodMenu = new Intent(this, food_menu.class);
@@ -125,14 +134,23 @@ public class MainMenuLoggedIn extends AppCompatActivity {
         startActivity(terrierBucks);
     }
 
-    protected void openSettings() {
-        Intent settingsIntent = new Intent(this, settings.class);
-        startActivity(settingsIntent);
-    }
+//    protected void openSettings() {
+//        Intent settingsIntent = new Intent(this, settings.class);
+//        startActivity(settingsIntent);
+//    }
 
     protected void openDailyAnnouncements() {
+
         Intent dailyAnnounceIntent = new Intent(this, daily_announcements.class);
         startActivity(dailyAnnounceIntent);
+    }
+
+    protected void openLaundry(){
+
+    }
+
+    protected void openDonate(){
+
     }
 
 
