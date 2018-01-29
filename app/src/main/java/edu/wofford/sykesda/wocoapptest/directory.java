@@ -105,9 +105,8 @@ public class directory extends AppCompatActivity {
 
             HttpHandler sh = new HttpHandler();
             String url = "http://104.131.35.222:5000/directory?q=" + this.requestedName;
-            String jsonStr = sh.makeServiceCall(url);
 
-            return jsonStr;
+            return sh.makeServiceCall(url);
         }
 
         @Override

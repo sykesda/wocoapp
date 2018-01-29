@@ -35,7 +35,7 @@ public class directoryExtraDetails extends AppCompatActivity {
             String suffix = (String) givenToMe.get("suffix");
             final String email = (String) givenToMe.get("email");
 
-            //TextView heyThere = (TextView) findViewById(R.id.infoTest);
+            // TextView heyThere = (TextView) findViewById(R.id.infoTest);
 
             String startWith;
 
