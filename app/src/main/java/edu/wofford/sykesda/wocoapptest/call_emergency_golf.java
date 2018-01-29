@@ -29,8 +29,6 @@ public class call_emergency_golf extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        // add cards to the ArrayList, index starting at 0
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_emergency_golf);
         final ArrayList<ExampleItem> exampleList = new ArrayList<>();
@@ -45,8 +43,6 @@ public class call_emergency_golf extends AppCompatActivity {
         ExampleItem campus_safety = exampleList.get(1);
         ExampleItem medical_emergency = exampleList.get(2);
 
-
-
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -54,6 +50,7 @@ public class call_emergency_golf extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
         mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
