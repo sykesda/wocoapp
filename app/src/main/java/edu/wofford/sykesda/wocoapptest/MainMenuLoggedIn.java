@@ -107,6 +107,22 @@ public class MainMenuLoggedIn extends AppCompatActivity {
             }
         });
 
+        final ImageButton openAvi = findViewById(R.id.aviBtn);
+        openAvi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAvi();
+            }
+        });
+
+        final ImageButton openStudy = findViewById(R.id.studyBtn);
+        openStudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStudy();
+            }
+        });
+
     }
 
     protected void openMap() {
@@ -163,7 +179,20 @@ public class MainMenuLoggedIn extends AppCompatActivity {
     }
 
     protected void openDonate(){
+        String url = "http://wofford.edu/supportwofford";
+        Intent donateIntent = new Intent(Intent.ACTION_VIEW);
+        donateIntent.setData(Uri.parse(url));
+        startActivity(donateIntent);
+    }
 
+    protected void openAvi(){
+        Intent aviIntent = new Intent(this, avi.class);
+        startActivity(aviIntent);
+    }
+
+    protected void openStudy(){
+        Intent studyIntent = new Intent(this, study.class);
+        startActivity(studyIntent);
     }
 
 
