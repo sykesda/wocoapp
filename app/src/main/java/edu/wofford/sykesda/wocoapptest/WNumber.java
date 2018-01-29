@@ -53,6 +53,14 @@ public class WNumber extends AppCompatActivity {
             }
         });
 
+        //Wire button to start Manual Entry activity
+        manualEntryButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startManualEntry(v);
+            }
+        });
+
         //Wire button to create popup for deleting saved W#
         deleteWNumButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -65,6 +73,11 @@ public class WNumber extends AppCompatActivity {
     public void startScanMenu(View v){
         Intent intent = new Intent(this, WNumber_ScanMenu.class);
         startActivityForResult(intent, 0);
+    }
+
+    public void startManualEntry(View v){
+        Intent intent = new Intent(this, WNumber_Manual.class);
+        startActivityForResult(intent, 1);
     }
 
     public void startDeleteConfirmPopup(View v){
@@ -111,7 +124,7 @@ public class WNumber extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 0){
+        if(requestCode == 0 | requestCode == 1){
             if (resultCode == RESULT_OK){{
                 if (data != null) {
                     rawWnum = data.getStringExtra("rawWnum");
