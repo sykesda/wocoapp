@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.wofford.sykesda.wocoapptest.Movies_discount">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/monsoon2"
+        android:layout_marginTop="37dp"
+        android:layout_toStartOf="@+id/monsoon2"
+        app:srcCompat="@drawable/ic_ncg" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="51dp"
+        app:srcCompat="@drawable/ic_amc" />
+
+
+    <TextView
+        android:id="@+id/amc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="AMC"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/ncg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toEndOf="@+id/imageView5"
+        android:text="NCG"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/monsoon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="Thursday $6 with student ID"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/lemon_grass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView5"
+        android:text="Tuesday $6 with student ID"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+
+
+</RelativeLayout>
