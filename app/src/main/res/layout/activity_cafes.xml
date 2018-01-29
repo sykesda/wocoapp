@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="edu.wofford.sykesda.wocoapptest.cafes">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="505dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/restaurants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Cafes"
+        android:textSize="50dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/burwell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="20dp"
+        android:layout_toStartOf="@+id/textView6"
+        android:onClick="acorn_cafe_menu"
+        android:text="Acorn Cafe"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/phaseV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/burwell"
+        android:layout_below="@+id/burwell"
+        android:layout_marginTop="14dp"
+        android:onClick="terrier_ground_menu"
+        android:text="Terrier Ground"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/zachs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/burwell"
+        android:layout_below="@+id/offCampus"
+        android:layout_marginTop="33dp"
+        android:onClick="starbucks_menu"
+        android:text="Starbucks"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/playerCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/zachs"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="12dp"
+        android:onClick="little_river_menu"
+        android:text="Little River Roasting"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/burwell_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/burwell"
+        android:layout_alignBottom="@+id/burwell"
+        android:layout_alignStart="@+id/playerCorner_hours"
+        android:text="Hours 7:00 AM ~ 8:00 PM"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/phaseV_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/phaseV"
+        android:layout_alignBottom="@+id/phaseV"
+        android:layout_alignStart="@+id/burwell_hours"
+        android:text="Hours 11:00 AM ~ 02:00 PM"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/zachs_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/zachs"
+        android:layout_alignBottom="@+id/zachs"
+        android:layout_alignStart="@+id/playerCorner_hours"
+        android:text="Hours 9:00 AM ~ 10:00 PM"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/playerCorner_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/playerCorner"
+        android:layout_alignBottom="@+id/playerCorner"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/playerCorner"
+        android:text="Hours 11:00 AM ~ 01:00 PM"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/offCampus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phaseV"
+        android:layout_marginTop="36dp"
+        android:layout_toEndOf="@+id/zachs"
+        android:text="Off Campus"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurants"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="On Campus"
+        android:textSize="20dp" />
+</RelativeLayout>
