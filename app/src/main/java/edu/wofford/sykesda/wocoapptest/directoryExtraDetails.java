@@ -27,10 +27,15 @@ public class directoryExtraDetails extends AppCompatActivity {
         if(givenToMe != null) {
             // Only work on here, else we'll generate possible crashes
 
-            String firstName = (String) givenToMe.get("firstname");
-            String middleName = (String) givenToMe.get("middlename");
-            String lastName = (String) givenToMe.get("lastname");
-            final String phone = (String) givenToMe.get("phone");
+            String firstName = (String) givenToMe.get("first");
+            String middleName = (String) givenToMe.get("middle");
+            String lastName = (String) givenToMe.get("last");
+            String phone = "";
+
+            if(givenToMe.containsKey("phone")) {
+                phone = (String) givenToMe.get("phone");
+            }
+
             String preferred = (String) givenToMe.get("preferred");
             String suffix = (String) givenToMe.get("suffix");
             final String email = (String) givenToMe.get("email");
@@ -66,12 +71,14 @@ public class directoryExtraDetails extends AppCompatActivity {
                 TextView phoneNumberTxtView = (TextView) findViewById(R.id.thePhoneNumber);
                 phoneNumberTxtView.setText(phone);
 
+                final String phoneNo = phone;
+
                 callButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
                         Intent callingIntent = new Intent(Intent.ACTION_DIAL);
-                        callingIntent.setData(Uri.parse("tel:" + phone));
+                        callingIntent.setData(Uri.parse("tel:" + phoneNo));
                         startActivity(callingIntent);
                     }
                 });
