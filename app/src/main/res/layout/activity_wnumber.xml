@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.wofford.sykesda.wocoapptest.WNumber">
+    tools:context="edu.wofford.sykesda.wocoapptest.WNumber"
+    android:id="@+id/wNumConstraint">
 
     <TextView
         android:id="@+id/wNumText"
@@ -22,7 +23,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="107dp"
+        android:layout_height="201dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -37,30 +38,46 @@
             android:id="@+id/scanIDButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="Scan ID for W#"
             app:layout_constraintBottom_toTopOf="@+id/manualEntryButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="407dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/manualEntryButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Manually Enter W#"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/clearWNumButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scanIDButton" />
+
+        <Button
+            android:id="@+id/clearWNumButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Manually Enter W#"
-            android:visibility="gone"
+            android:layout_marginTop="4dp"
+            android:text="Delete Saved W#"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scanIDButton"
+            app:layout_constraintTop_toBottomOf="@+id/manualEntryButton"
             app:layout_constraintVertical_bias="1.0" />
     </android.support.constraint.ConstraintLayout>
 
