@@ -47,9 +47,13 @@ public class call_emergency_golf extends AppCompatActivity {
 
 
 
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ExampleAdapter(exampleList);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
         mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
