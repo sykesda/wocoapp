@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="@string/MainMenuLoggedIn_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,22 +46,33 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".directory" />
-        <activity android:name=".food_menu" />
-        <activity android:name=".tv_guide" />
-        <activity android:name=".call_emergency_golf" />
-        <activity android:name=".class_schedule" />
+        <activity android:name=".directory"
+            android:label="@string/directory_label"/>
+        <activity android:name=".food_menu"
+            android:label="@string/food_menu_label"/>
+        <activity android:name=".tv_guide"
+            android:label="@string/tv_guide_label"/>
+        <activity android:name=".call_emergency_golf"
+            android:label="@string/call_emergency_golf_label"/>
+        <activity android:name=".class_schedule"
+            android:label="@string/class_schedule_label"/>
         <activity android:name=".settings" />
-        <activity android:name=".terrier_bucks" />
-        <activity android:name=".ResidentAssistant" />
         <activity android:name=".directoryExtraDetails" />
-        <activity
-            android:name=".daily_announcements"
-            android:label="Announcements and Events" />
-        <activity android:name=".daily_announcements_details" />
-        <activity android:name=".daily_announce_tags_filtering" />
-        <activity android:name=".campus_food_menu" />
+        <activity android:name=".terrier_bucks"
+            android:label="@string/terrier_bucks_label"/>
+        <activity android:name=".ResidentAssistant"
+            android:label="@string/ResidentAssistant_label"/>
+        <activity android:name=".daily_announcements"
+            android:label="@string/daily_announcements_label" />
+        <activity android:name=".daily_announcements_details"
+            android:label="@string/daily_announcements_details_label"/>
+        <activity android:name=".daily_announce_tags_filtering"
+            android:label="@string/daily_announce_tags_filtering_label"/>
+        <activity android:name=".campus_food_menu"
+            android:label="@string/campus_food_menu_label"/>
         <activity android:name=".cafes" />
+        <activity android:name=".avi" />
+        <activity android:name=".study" />
         <activity android:name=".restaurants" />
         <activity android:name=".student_activity" />
         <activity android:name=".Restaurant_discount" />
@@ -70,8 +82,10 @@
         <activity android:name=".Auto_discounts" />
         <activity android:name=".Shopping_discounts" />
         <activity android:name=".Entertainment_discounts" />
-        <activity android:name=".WNumber" />
+        <activity android:name=".WNumber"
+            android:label="@string/WNumber_label"/>
         <activity android:name=".WNumber_ScanMenu"
+            android:label="@string/WNumber_ScanMenu_label"
             android:screenOrientation="portrait"/>
 
         <meta-data

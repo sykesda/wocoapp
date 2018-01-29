@@ -20,4 +20,24 @@
     <string name="action_add_announcement">Add Announcement</string>
     <string name="done_tags">Done</string>
 
+    <string name="MainMenuLoggedIn_label">The WoCo Menu</string>
+    <string name="directory_label">Wofford Directory</string>
+    <string name="tv_guide_label">TV Guide</string>
+    <string name="call_emergency_golf_label">WoCo Hotline</string>
+    <string name="class_schedule_label">Class Schedule</string>
+    <string name="daily_announcements_label">Announcements and Events</string>
+    <string name="daily_announcements_details_label">Details</string>
+    <string name="daily_announce_tags_filtering_label">Filter with Tags</string>
+    <string name="campus_food_menu_label">Campus Food</string>
+    <string name="food_menu_label">Local Food and Discounts</string>
+    <string name="terrier_bucks_label">Terrier Bucks</string>
+    <string name="ResidentAssistant_label">RAs</string>
+    <string name="WNumber_label">My W #</string>
+    <string name="WNumber_ScanMenu_label">Scan Your ID</string>
+
+
+
+
+
+
 </resources>
