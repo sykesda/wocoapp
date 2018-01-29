@@ -72,7 +72,7 @@ public class call_emergency_golf extends AppCompatActivity {
                 }
                 if (position == 2){
                     Calendar cal = new GregorianCalendar();
-                    if (cal.get(Calendar.DAY_OF_WEEK) >= 1 && cal.get(Calendar.DAY_OF_WEEK) <=5 && cal.get(Calendar.HOUR_OF_DAY) >= 8 && cal.get(Calendar.HOUR_OF_DAY) <= 17){
+                    if (cal.get(Calendar.DAY_OF_WEEK) >= 1 && cal.get(Calendar.DAY_OF_WEEK) <=5 && cal.get(Calendar.HOUR_OF_DAY) >= 8 && cal.get(Calendar.HOUR_OF_DAY) < 17){
                         makePhoneCall("8645975100");
                     }
                     else{

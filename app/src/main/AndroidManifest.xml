@@ -13,6 +13,7 @@
         android:protectionLevel="signature" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -35,7 +36,7 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -57,7 +58,31 @@
             android:name=".daily_announcements"
             android:label="Announcements and Events" />
         <activity android:name=".daily_announcements_details" />
-        <activity android:name=".daily_announce_tags_filtering"></activity>
+        <activity android:name=".daily_announce_tags_filtering" />
+        <activity android:name=".campus_food_menu" />
+        <activity android:name=".cafes" />
+        <activity android:name=".restaurants" />
+        <activity android:name=".student_activity" />
+        <activity android:name=".Restaurant_discount" />
+        <activity android:name=".Movies_discount" />
+        <activity android:name=".Hardware_discount" />
+        <activity android:name=".Software_discounts" />
+        <activity android:name=".Auto_discounts" />
+        <activity android:name=".Shopping_discounts" />
+        <activity android:name=".Entertainment_discounts" />
+        <activity android:name=".WNumber" />
+        <activity android:name=".WNumber_ScanMenu"
+            android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+
+        <activity android:name=".WNumber_Scanner"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
