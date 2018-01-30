@@ -160,6 +160,9 @@ public class MainMenuLoggedIn extends AppCompatActivity {
 
     protected void openLaundry(){
 
+        Intent laundryPage = new Intent(this, laundryRooms.class);
+        startActivity(laundryPage);
+
     }
 
     protected void openDonate(){

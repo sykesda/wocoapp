@@ -2,8 +2,10 @@ package edu.wofford.sykesda.wocoapptest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -38,7 +40,9 @@ public class tv_guide extends AppCompatActivity {
             while(actualChannels.hasNext()) {
                 HashMap<String, String> prepareHash = new HashMap<>();
                 String channelName = actualChannels.next().toString();
-                prepareHash.put("channel_info", channelName + " " + channelList.getString(channelName));
+                prepareHash.put("channel_name", channelName);
+                prepareHash.put("channel_number", channelList.getString(channelName));
+
                 channels.add(prepareHash);
             }
 
@@ -52,8 +56,8 @@ public class tv_guide extends AppCompatActivity {
 
         ListView theListView = findViewById(R.id.channelGuide);
         ListAdapter announcementAdapter = new SimpleAdapter(getApplicationContext(), channels,
-                R.layout.channel_guide_displaybox, new String[]{ "channel_info"},
-                new int[]{R.id.txtThingyChannels});
+                R.layout.channel_guide_displaybox, new String[]{ "channel_name", "channel_number"},
+                new int[]{R.id.tvChannelName, R.id.tvChannelNumber});
 
         theListView.setAdapter(announcementAdapter);
 

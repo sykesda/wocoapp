@@ -135,7 +135,7 @@ public class directoryExtraDetails extends AppCompatActivity {
                 }
             });
 
-            phoneBtn.setOnClickListener(new View.OnClickListener() {
+            websiteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Uri uriUrl = Uri.parse("http://" + givenToMe.get("personalWeb").toString());
