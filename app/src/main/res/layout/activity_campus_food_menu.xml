@@ -1,133 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-tools:context="edu.wofford.sykesda.wocoapptest.campus_food_menu">
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
 
 
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginTop="505dp">
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Campus Cafeterias and Hours"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25dp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/clientimain"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="burwell_menu"
+                android:text="Burwell"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</TableLayout>
 
-<TextView
-    android:id="@+id/restaurants"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:text="Campus Food"
-    android:textSize="50dp"
-    android:textAlignment="center"/>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Mon-Thu: 7.A.M  ~  8.P.M"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
-<Button
-    android:id="@+id/burwell"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/restaurants"
-    android:layout_marginStart="45dp"
-    android:layout_marginTop="23dp"
-    android:onClick="burwell_menu"
-    android:text="Burwell"
-    android:textAllCaps="false" />
+        </TableRow>
 
-<Button
-    android:id="@+id/phaseV"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignStart="@+id/burwell"
-    android:layout_below="@+id/burwell"
-    android:layout_marginTop="46dp"
-    android:onClick="phaseV_menu"
-    android:text="PhaseV"
-    android:textAllCaps="false" />
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
 
-<Button
-    android:id="@+id/zachs"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignStart="@+id/phaseV"
-    android:layout_below="@+id/phaseV"
-    android:layout_marginTop="50dp"
-    android:onClick="zachs_menu"
-    android:text="Zachs"
-    android:textAllCaps="false" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="phaseV_menu"
+                android:text="PhaseV"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
-<Button
-    android:id="@+id/playerCorner"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/zachs"
-    android:layout_marginStart="23dp"
-    android:layout_marginTop="56dp"
-    android:onClick="players_corner_menu"
-    android:text="Player's Corner"
-    android:textAllCaps="false" />
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:text="Mon-Fri: 11.A.M  ~  2.P.M" />
 
-<TextView
-    android:id="@+id/burwell_hours"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/burwell"
-    android:layout_alignBottom="@+id/burwell"
-    android:layout_alignParentEnd="true"
-    android:layout_marginEnd="41dp"
-    android:text="Hours 7:00 AM ~ 8:00 PM"
-    android:textSize="15dp" />
+        </TableRow>
 
-<TextView
-    android:id="@+id/phaseV_hours"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/phaseV"
-    android:layout_alignBottom="@+id/phaseV"
-    android:layout_alignStart="@+id/burwell_hours"
-    android:text="Hours 11:00 AM ~ 02:00 PM"
-    android:textSize="15dp" />
+        <TableRow
+            android:id="@+id/tableRow13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
 
-<TextView
-    android:id="@+id/zachs_hours"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/zachs"
-    android:layout_alignBottom="@+id/zachs"
-    android:layout_alignStart="@+id/burwell_hours"
-    android:text="Hours 9:00 AM ~ 10:00 PM"
-    android:textSize="15dp" />
+            <Button
+                android:id="@+id/button03"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="zachs_menu"
+                android:text="Zachs"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
-<TextView
-    android:id="@+id/playerCorner_hours"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/playerCorner"
-    android:layout_alignBottom="@+id/playerCorner"
-    android:layout_alignStart="@+id/zachs_hours"
-    android:text="Hours 11:00 AM ~ 01:00 PM"
-    android:textSize="15dp" />
+            <Button
+                android:id="@+id/button27"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:text="Mon-Thr: 9.A.M  ~  10.P.M" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3dd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
+
+            <Button
+                android:id="@+id/button3abc"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="players_corner_menu"
+                android:text="Player's Corner"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button7df"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:text="Mon-Fri： 11.A.M ~ 2.P.M"
+                />
+
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>

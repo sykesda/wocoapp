@@ -1,134 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="edu.wofford.sykesda.wocoapptest.restaurants">
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
 
 
     <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="505dp">
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terrier Bucks Accepted"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25dp" />
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3">
+
+            <Button
+                android:id="@+id/clientimain"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="papa_menu"
+                android:text="Papa John's"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="papa_direction"
+                android:text="@string/restaurants_maps_open"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="cribbs_menu"
+                android:text="Cribb's Kitchen"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="cribbs_direction"
+                android:text="@string/restaurants_maps_open"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/tableRow3df5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
+
+            <Button
+                android:id="@+id/button3gh"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="monarchs_menu"
+                android:text="Monarch's Cafe"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button7sg"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="monarchs_direction"
+                android:text="@string/restaurants_maps_open"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/tableRowd344"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3" >
+
+            <Button
+                android:id="@+id/button3gm"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="lime_leaf_menu"
+                android:text="Lime Leaf"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button7vv"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="lime_leaf_direction"
+                android:text="@string/restaurants_maps_open"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </TableRow>
+
     </TableLayout>
-
-    <TextView
-        android:id="@+id/restaurants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Terrier Bucks Accepted"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="40dp" />
-
-    <Button
-        android:id="@+id/Papa_Johns"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Cribbs"
-        android:layout_below="@+id/restaurants"
-        android:layout_marginTop="29dp"
-        android:onClick="papa_menu"
-        android:text="Papa John's"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/Cribbs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/Papa_Johns"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="46dp"
-        android:onClick="cribbs_menu"
-        android:text="Cribb's Kitchen"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/Monarch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/Cribbs"
-        android:layout_below="@+id/Cribbs"
-        android:layout_marginTop="41dp"
-        android:onClick="monarchs_menu"
-        android:text="Monarch's Cafe"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/Lime_Leaf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Papa_Johns"
-        android:layout_below="@+id/Monarch"
-        android:layout_marginTop="32dp"
-        android:onClick="lime_leaf_menu"
-        android:text="Lime Leaf"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/Papa_direction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Cribbs"
-        android:layout_alignStart="@+id/Cribb_Direction"
-        android:onClick="papa_direction"
-        android:text="Direction/Address"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/Cribb_Direction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Cribbs"
-        android:layout_alignBottom="@+id/Cribbs"
-        android:layout_alignStart="@+id/Monarch_direction"
-        android:onClick="cribbs_direction"
-        android:text="Direction/Address"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/Monarch_direction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Monarch"
-        android:layout_alignBottom="@+id/Monarch"
-        android:layout_marginStart="13dp"
-        android:layout_toEndOf="@+id/Monarch"
-        android:onClick="monarchs_direction"
-        android:text="Direction/Address"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/Lime_direction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Monarch_direction"
-        android:layout_alignTop="@+id/Lime_Leaf"
-        android:onClick="lime_leaf_direction"
-        android:text="Direction/Address"
-        android:textAllCaps="false" />
 
 </RelativeLayout>

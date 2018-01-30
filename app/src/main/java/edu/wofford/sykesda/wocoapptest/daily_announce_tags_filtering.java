@@ -29,7 +29,6 @@ public class daily_announce_tags_filtering extends AppCompatActivity {
         setContentView(R.layout.activity_daily_announce_tags_filtering);
 
         lv = (ListView) findViewById(R.id.listView1);
-        // TODO is this needed???
         lv.setItemsCanFocus(true);
 
         ArrayList tagsList = this.getIntent().getStringArrayListExtra("tagList");
