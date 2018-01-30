@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -22,83 +23,126 @@ public class directoryExtraDetails extends AppCompatActivity {
 
         Bundle getContact = getIntent().getExtras();
 
-        HashMap givenToMe = (HashMap) getContact.getSerializable("contact");
+        final HashMap givenToMe = (HashMap) getContact.getSerializable("contact");
 
         if(givenToMe != null) {
-            // Only work on here, else we'll generate possible crashes
 
-            String firstName = (String) givenToMe.get("first");
-            String middleName = (String) givenToMe.get("middle");
-            String lastName = (String) givenToMe.get("last");
-            String phone = "";
+            String hold = "";
 
-            if(givenToMe.containsKey("phone")) {
-                phone = (String) givenToMe.get("phone");
+            // This makes sure we have the prefix, if there.
+            if(givenToMe.containsKey("prefix") && !givenToMe.get("prefix").equals("NULL")) {
+                hold = hold.concat(givenToMe.get("prefix").toString() + " ");
             }
 
-            String preferred = (String) givenToMe.get("preferred");
-            String suffix = (String) givenToMe.get("suffix");
-            final String email = (String) givenToMe.get("email");
+            // This ensures we have the right name/preferred
+            if(!givenToMe.get("preferred").toString().equals("")) {
+                hold = hold.concat(givenToMe.get("preferred").toString()) + " ";
+            } else  {
+                hold = hold.concat(givenToMe.get("first").toString()) + " ";
+            }
 
-            // TextView heyThere = (TextView) findViewById(R.id.infoTest);
+            // We add middle, if there
+            if(!givenToMe.get("middle").toString().equals("NULL")) {
+                hold = hold.concat(givenToMe.get("middle").toString()) + " ";
+            }
 
-            String startWith;
+            // We add last name
+            hold = hold.concat(givenToMe.get("last").toString()) + " ";
 
-            if(preferred.equals("")) {
-                startWith = firstName;
+            // Now we deal with the suffix
+            if(!givenToMe.get("suffix").toString().equals("") && !givenToMe.get("suffix").toString().equals("NULL")) {
+                hold = hold.concat(givenToMe.get("suffix").toString());
+            }
+
+            String email = givenToMe.get("email").toString();
+
+            TextView theName = findViewById(R.id.theFullNameTxtView);
+            TextView theEmail = findViewById(R.id.theEmailAddrTxtView);
+
+            // We fix name and email
+            theName.setText(hold);
+            theEmail.setText(email);
+
+            // Now we process the other fields.
+            // TODO: Make sure to update the visibility of the button
+            TableRow phoneRow = findViewById(R.id.phoneNumberRow);
+            Button phoneBtn = findViewById(R.id.startCallBtn);
+            if(givenToMe.containsKey("phone1")) {
+                // This is a staff member, there's a number.
+                TextView phoneNumberView = findViewById(R.id.thePhoneNumberTxtView);
+                phoneNumberView.setText(givenToMe.get("phone1").toString());
             } else {
-                startWith = preferred;
+                // This is probably a student, no phone number. Won't display
+                phoneRow.setVisibility(View.INVISIBLE);
+                phoneBtn.setVisibility(View.INVISIBLE);
             }
 
-            String hold = suffix + " " + startWith + " " + middleName + " " + lastName;
 
-            TextView wholeName = (TextView) findViewById(R.id.theNameYay);
-            TextView emailAddrView = (TextView) findViewById(R.id.theEmailAddr);
-
-            final Button callButton = (Button) findViewById(R.id.callButton);
-            Button emailButton = (Button) findViewById(R.id.emailButton);
-
-            wholeName.setText(hold);
-            emailAddrView.setText(email);
-
-            LinearLayout heyWorld = (LinearLayout) findViewById(R.id.wholePhoneField);
-
-            if(!phone.equals("")) {
-                // We have no phone number
-                heyWorld.setVisibility(View.VISIBLE);
-                callButton.setVisibility(View.VISIBLE);
-
-                TextView phoneNumberTxtView = (TextView) findViewById(R.id.thePhoneNumber);
-                phoneNumberTxtView.setText(phone);
-
-                final String phoneNo = phone;
-
-                callButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        Intent callingIntent = new Intent(Intent.ACTION_DIAL);
-                        callingIntent.setData(Uri.parse("tel:" + phoneNo));
-                        startActivity(callingIntent);
-                    }
-                });
-
+            TableRow cpoRow = findViewById(R.id.theCPORow);
+            if(!givenToMe.get("cpo").toString().equals("NULL")) {
+                TextView cpoTxtView = findViewById(R.id.theCPOTxtView);
+                cpoTxtView.setText(givenToMe.get("cpo").toString());
             } else {
-                heyWorld.setVisibility(View.INVISIBLE);
-                callButton.setVisibility(View.INVISIBLE);
+                // For whatever reason this contact doesn't have a cpo box
+                cpoRow.setVisibility(View.INVISIBLE);
             }
 
-            emailButton.setOnClickListener(new View.OnClickListener() {
+            TableRow departmentRow = findViewById(R.id.theDepartmentRow);
+            if(givenToMe.containsKey("department1") && !givenToMe.get("department1").toString().equals("NULL")) {
+                TextView theDepartmentView = findViewById(R.id.theDepartmentTxtView);
+                theDepartmentView.setText(givenToMe.get("department1").toString());
+            } else {
+                departmentRow.setVisibility(View.INVISIBLE);
+            }
+
+            TableRow officeRow = findViewById(R.id.theOfficeRow);
+            if(givenToMe.containsKey("office") && !givenToMe.get("office").equals("NULL")) {
+                TextView theOfficeView = findViewById(R.id.theOfficeTxtView);
+                theOfficeView.setText(givenToMe.get("office").toString());
+            } else {
+                officeRow.setVisibility(View.INVISIBLE);
+            }
+
+            TableRow websiteRow = findViewById(R.id.theWebsiteRow);
+            Button websiteBtn = findViewById(R.id.openWebsiteBtn);
+            if(givenToMe.containsKey("personalWeb") && !givenToMe.get("personalWeb").toString().equals("NULL")) {
+                TextView websiteTxt = findViewById(R.id.theWebsiteTxtView);
+                websiteTxt.setText(givenToMe.get("personalWeb").toString());
+            } else {
+                websiteRow.setVisibility(View.INVISIBLE);
+                websiteBtn.setVisibility(View.INVISIBLE);
+            }
+
+            phoneBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    Intent callingIntent = new Intent(Intent.ACTION_DIAL);
+                    callingIntent.setData(Uri.parse("tel:" + givenToMe.get("phone1").toString()));
+                    startActivity(callingIntent);
+                }
+            });
+
+            Button emailBtn = findViewById(R.id.sendEmailBtn);
+            emailBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
                     emailIntent.setType("message/rfc822");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{givenToMe.get("email").toString()});
                     startActivity(emailIntent);
                 }
             });
 
-
+            phoneBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Uri uriUrl = Uri.parse("http://" + givenToMe.get("personalWeb").toString());
+                    Intent openBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                    startActivity(openBrowser);
+                }
+            });
 
         }
 

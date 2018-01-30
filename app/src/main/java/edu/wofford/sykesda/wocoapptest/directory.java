@@ -40,8 +40,8 @@ public class directory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
 
-        theView = (ListView) findViewById(R.id.recyleView);
-        Button theButtSearch = (Button) findViewById(R.id.findPerson);
+        theView = findViewById(R.id.recyleView);
+        Button theButtSearch = findViewById(R.id.findPerson);
 
         theButtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,7 @@ public class directory extends AppCompatActivity {
 
                 theResults.clear();
 
-                EditText personObj = (EditText) findViewById(R.id.personIWant);
+                EditText personObj = findViewById(R.id.personIWant);
 
                 getContact findContact = new getContact(personObj.getText().toString(),  null, null);
                 findContact.execute();
@@ -91,6 +91,8 @@ public class directory extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            // TODO: An exception needs to be added in case the request to the server fails.
 
             HttpHandler sh = new HttpHandler();
             String url = "http://104.131.35.222:5000/directory?q=" + this.requestedName;
