@@ -1,12 +1,15 @@
 package edu.wofford.sykesda.wocoapptest;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -52,8 +55,17 @@ public class WNumber_ScanMenu extends AppCompatActivity {
 
 
     public void scanBarcode (View v){
-        Intent intent = new Intent(this, WNumber_Scanner.class);
-        startActivityForResult(intent, 0);
+
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.CAMERA},
+                    4);
+
+        }else {
+            Intent intent = new Intent(this, WNumber_Scanner.class);
+            startActivityForResult(intent, 0);
+        }
     }
 
     public void onSaveButtonClick (View v){
@@ -88,6 +100,28 @@ public class WNumber_ScanMenu extends AppCompatActivity {
 
                 super.onActivityResult(requestCode, resultCode, data);
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 4: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Permission granted
+
+                    scanBarcode(getCurrentFocus());
+
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please enable camera permission", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                return;
+            }
+
         }
     }
 }
