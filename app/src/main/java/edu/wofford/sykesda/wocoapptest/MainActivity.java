@@ -1,6 +1,9 @@
 package edu.wofford.sykesda.wocoapptest;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button LoginBttn = (Button) findViewById(R.id.LoginBttn);
+        final Button LoginBttn = (Button) findViewById(R.id.LoginBttn);
         Button ContinueAsGuestBttn = (Button) findViewById(R.id.ContinueAsGuestBttn);
 
         LoginBttn.setOnClickListener(new View.OnClickListener() {
@@ -24,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: This is for whenever a user is trying to log in! Authentication is needed
 
-                // EditText username = findViewById(R.id.);
 
+                // If this works, then the database stuff isn't crashing :)
                 SwitchActivity();
+
             }
         });
     }
