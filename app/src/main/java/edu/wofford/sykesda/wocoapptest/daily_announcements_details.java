@@ -63,17 +63,19 @@ public class daily_announcements_details extends AppCompatActivity {
             //Ex. datetime: 2018-01-12 10:00:00.000000
 
             //Set date in MM-DD-YYYY format
-            date = datetime.substring(5, 10) + "-" + datetime.substring(0,4);
 
-            //Set time to display both standard and military time
-            if(Integer.parseInt(datetime.substring(11,13)) > 12){
-                time = Integer.toString(Integer.parseInt(datetime.substring(11,13)) - 12) + datetime.substring(13,16) + " PM " + "(" + datetime.substring(11,16) + ")";
-            } else if (Integer.parseInt(datetime.substring(11, 13)) == 12) {
-                time = datetime.substring(11, 16) + " PM " + "(" + datetime.substring(11,16) + ")";
-            } else {
-                time = datetime.substring(11, 16) + " AM " + "(" + datetime.substring(11, 16) + ")";
-
-            }
+            time = datetime.substring(16);
+            date = datetime.substring(0, 16);
+//
+//            //Set time to display both standard and military time
+//            if(Integer.parseInt(datetime.substring(11,13)) > 12){
+//                time = Integer.toString(Integer.parseInt(datetime.substring(11,13)) - 12) + datetime.substring(13,16) + " PM " + "(" + datetime.substring(11,16) + ")";
+//            } else if (Integer.parseInt(datetime.substring(11, 13)) == 12) {
+//                time = datetime.substring(11, 16) + " PM " + "(" + datetime.substring(11,16) + ")";
+//            } else {
+//                time = datetime.substring(11, 16) + " AM " + "(" + datetime.substring(11, 16) + ")";
+//
+//            }
         }
 
 
