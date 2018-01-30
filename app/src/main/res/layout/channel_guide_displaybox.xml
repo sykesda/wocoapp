@@ -18,4 +18,5 @@
             android:id="@+id/txtThingyChannels"/>
     </LinearLayout>
 
+
 </android.support.constraint.ConstraintLayout>

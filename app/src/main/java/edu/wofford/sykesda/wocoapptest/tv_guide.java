@@ -42,6 +42,7 @@ public class tv_guide extends AppCompatActivity {
                 channels.add(prepareHash);
             }
 
+
         } catch(final JSONException e) {
             // TODO: Do something here if the JSON request failed.
             HashMap<String, String> prepareToAdd = new HashMap<>();
