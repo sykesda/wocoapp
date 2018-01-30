@@ -83,8 +83,8 @@
             android:name=".campus_food_menu"
             android:label="@string/campus_food_menu_label" />
         <activity android:name=".cafes" />
-        <activity android:name=".avi" />
-        <activity android:name=".study" />
+        <!-- <activity android:name=".avi" />
+        <activity android:name=".study" /> -->
         <activity android:name=".restaurants" />
         <activity android:name=".student_activity" />
         <activity android:name=".Restaurant_discount" />
@@ -113,7 +113,8 @@
             android:name=".WNumber_Scanner"
             android:screenOrientation="portrait" />
         <activity android:name=".WNumber_Manual" />
-        <activity android:name=".laundryRooms"></activity>
+        <activity android:name=".laundryRooms"
+            android:label="Laundry Rooms"></activity>
     </application>
 
 </manifest>
