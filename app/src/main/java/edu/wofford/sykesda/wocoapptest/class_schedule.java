@@ -15,10 +15,10 @@ public class class_schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_schedule);
 
-        TextView hey = findViewById(R.id.textView5);
+        // TextView hey = findViewById(R.id.textView5);
 
-        getContent test = new getContent(getApplicationContext());
-        hey.setText(test.requestJSON("laundry_rooms"));
+        // getContent test = new getContent(getApplicationContext());
+        // hey.setText(test.requestJSON("laundry_rooms"));
 
     }
 }
