@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: This is for whenever a user is trying to log in! Authentication is needed
-
+                getApplicationContext().deleteDatabase("WoffordApp.db");
+                getContent something = new getContent(getApplicationContext()); // Let's see if this works.
 
                 // If this works, then the database stuff isn't crashing :)
                 SwitchActivity();

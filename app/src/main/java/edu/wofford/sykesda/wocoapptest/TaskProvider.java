@@ -66,7 +66,7 @@ public class TaskProvider extends SQLiteOpenHelper {
             String actualDate = myFormat.format(currentDate);
 
             HttpHandler sh = new HttpHandler();
-            String url = "http://104.131.35.222:5000/changes?date=20180101";
+            String url = "http://104.131.35.222:5000/changes?date=20150101";
 
             return sh.makeServiceCall(url);
 
@@ -85,7 +85,7 @@ public class TaskProvider extends SQLiteOpenHelper {
 
                 while(theIterator.hasNext()) {
                     String currentKey = theIterator.next();
-                    String value = DatabaseUtils.sqlEscapeString(result.get(currentKey).toString());
+                    String value = result.get(currentKey).toString();
 
                     theDatabase.execSQL("INSERT INTO keyToJSON (theKey, JSON) VALUES (?, ?)", new String[]{currentKey, value});
                 }
