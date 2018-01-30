@@ -20,11 +20,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class daily_announcements extends AppCompatActivity {
@@ -193,7 +196,21 @@ public class daily_announcements extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     // Getting Announcement and Event date
-                    String date = jsonObj.getString("date");
+                    String date = "";
+
+                    String longdate = jsonObj.getString("date");
+                    Date dateObj;
+                    // process date from server into new format  Tue, 30 Jan 2018 00:00:00 GMT
+                    DateFormat longFormatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                    try {
+                        dateObj = (Date)longFormatter.parse(longdate);
+                        date = dateFormat.format(dateObj);
+                    } catch (java.text.ParseException e) {
+                        e.printStackTrace();
+                    }
+
 
                     // Getting JSON Array node for announcements
                     JSONArray announcements = jsonObj.getJSONArray("announcements");
@@ -245,6 +262,14 @@ public class daily_announcements extends AppCompatActivity {
                         String location = c.getString("location");
                         JSONArray jsonTags = c.getJSONArray("tags");
                         String tags = makeTagsStringAndTagsSetFromJSONArray(jsonTags);
+
+                        // process datetime into correct format
+                        try {
+                            dateObj = (Date)longFormatter.parse(datetime);
+                            datetime = eventDateFormat.format(dateObj);
+                        } catch (java.text.ParseException e) {
+                            e.printStackTrace();
+                        }
 
                         // temp hash map for single announcement
                         HashMap<String, String> eventMap = new HashMap<>();
