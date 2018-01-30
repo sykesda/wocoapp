@@ -25,12 +25,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 public class directory extends AppCompatActivity {
 
     private static final String TAG = "directory";
 
-    private ArrayList<HashMap<String, String>> studentResults = new ArrayList<>();
+    private ArrayList<HashMap<String, String>> theResults = new ArrayList<>();
     private ListView theView;
 
     @Override
@@ -38,36 +40,25 @@ public class directory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
 
-        theView = (ListView) findViewById(R.id.recyleView);
-        Button theButtSearch = (Button) findViewById(R.id.findPerson);
+        theView = findViewById(R.id.recyleView);
+        Button theButtSearch = findViewById(R.id.findPerson);
 
         theButtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(theView.getChildCount() > 0) {
-                    // TODO: Something needs to be done here to empty previous cards.
-                    // For whatever reason the following function makes the app crash.
-                    // Everything seems to point out that is the way to remove all the cards
-                    // I suspect it's the fact that I'm trying to add more things to right after?
+                theResults.clear();
 
-                    // theView.removeAllViews();
-                }
+                EditText personObj = findViewById(R.id.personIWant);
 
-                EditText personObj = (EditText) findViewById(R.id.personIWant);
-
-                String searchFor = personObj.toString();
-
-                getContact werkItBaby = new getContact(personObj.getText().toString(),  null, null);
-                werkItBaby.execute();
-
-                Intent moreDetails = new Intent(getApplicationContext(), directoryExtraDetails.class);
+                getContact findContact = new getContact(personObj.getText().toString(),  null, null);
+                findContact.execute();
 
                 theView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        HashMap<String, String> useThis = studentResults.get(i);
+                        HashMap<String, String> useThis = theResults.get(i);
 
                         // Get ready to start new activity
                         Intent toStartDetails = new Intent(getApplicationContext(), directoryExtraDetails.class);
@@ -93,8 +84,6 @@ public class directory extends AppCompatActivity {
         private String requestedName;
         private TextView fixHere;
 
-        // private ArrayList<HashMap<String, String>> studentResults = new ArrayList<>();
-
         private getContact(String requestedName, TextView fixHere, RecyclerView theDisplay) {
             this.requestedName = requestedName;
             this.fixHere = fixHere;
@@ -102,6 +91,8 @@ public class directory extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            // TODO: An exception needs to be added in case the request to the server fails.
 
             HttpHandler sh = new HttpHandler();
             String url = "http://104.131.35.222:5000/directory?q=" + this.requestedName;
@@ -118,48 +109,36 @@ public class directory extends AppCompatActivity {
                 JSONArray theStudentResults = theJObject.getJSONArray("students");
                 JSONArray theEmployeeResults = theJObject.getJSONArray("employees");
 
-                ArrayList<JSONArray> Everything = new ArrayList<>(Arrays.asList(theStudentResults, theEmployeeResults));
+                ArrayList<JSONArray> twoGroups = new ArrayList<>(Arrays.asList(theStudentResults, theEmployeeResults));
 
-                for (int sm = 0; sm < Everything.size(); sm++) {
+                for(int e = 0; e < twoGroups.size(); e++) {
+                    JSONArray currentlyUsing = twoGroups.get(e);
 
-                    JSONArray currentObject = Everything.get(sm);
+                    for(int i = 0; i < currentlyUsing.length(); i++) {
 
-                    for (int i = 0; i < currentObject.length(); i++) {
+                        HashMap<String, String> personInfo = new HashMap<>();
+                        JSONObject currentPerson = currentlyUsing.getJSONObject(i);
 
-                        JSONObject current = currentObject.getJSONObject(i);
-
-                        String firstname, lastname, middlename, phone, preferred, suffix;
-
-                        ArrayList<String> fields = new ArrayList<>(Arrays.asList("firstname",
-                                "lastname",
-                                "middlename",
-                                "phone",
-                                "preferred",
-                                "suffix",
-                                "email"));
-
-                        HashMap<String, String> thisResult = new HashMap<>();
-
-                        for (int holder = 0; holder < fields.size(); holder++) {
-                            String currentField = fields.get(holder);
-                            thisResult.put(currentField, current.getString(currentField));
+                        Iterator<String> theKeys = currentPerson.keys();
+                        while(theKeys.hasNext()) {
+                            String currentKey = theKeys.next();
+                            personInfo.put(currentKey, currentPerson.getString(currentKey));
                         }
 
-                        studentResults.add(thisResult);
+                        theResults.add(personInfo);
 
                     }
-
                 }
 
+                ListAdapter announcementAdapter = new SimpleAdapter(directory.this, theResults,
+                        R.layout.directory_display_contact, new String[]{ "first", "last", "email", "middle"},
+                        new int[]{R.id.firstName, R.id.lastName, R.id.emailAddr, R.id.middleName});
+
+                theView.setAdapter(announcementAdapter);
+
             } catch (final JSONException e) {
-                // TODO: do something here with the exception. This is what causing the crash, I think
+                // TODO: If there's a problem with the JSON object, we'll get here. I need to do something here eventually.
             }
-
-            ListAdapter announcementAdapter = new SimpleAdapter(directory.this, studentResults,
-                    R.layout.directory_display_contact, new String[]{ "firstname", "lastname", "email", "middlename"},
-                    new int[]{R.id.firstName, R.id.lastName, R.id.emailAddr, R.id.middleName});
-
-            theView.setAdapter(announcementAdapter);
         }
 
     }
