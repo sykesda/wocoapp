@@ -124,7 +124,6 @@ public class MainMenuLoggedIn extends AppCompatActivity {
         });
 
     }
-
     protected void openMap() {
         Intent openMapsPlz = new Intent(this, MapsActivity.class);
         startActivity(openMapsPlz);

@@ -15,14 +15,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/wBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.188"
         app:srcCompat="@mipmap/ic_person_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/wBtn"
         android:layout_width="109dp"
         android:layout_height="110dp"
         android:layout_marginEnd="8dp"
@@ -32,7 +32,7 @@
         app:srcCompat="@mipmap/ic_w_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/bucksBtn"
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="108dp"
         android:layout_height="110dp"
@@ -42,11 +42,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/wBtn"
         app:srcCompat="@mipmap/ic_tbucks_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/scheduleBtn"
         android:layout_width="108dp"
         android:layout_height="113dp"
         android:layout_marginEnd="8dp"
@@ -54,11 +54,11 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/bucksBtn"
         app:srcCompat="@mipmap/ic_class_schedule_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/examBtn"
         android:layout_width="106dp"
         android:layout_height="104dp"
         android:layout_marginBottom="8dp"
@@ -68,6 +68,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleBtn"
         app:srcCompat="@mipmap/ic_exam_schedule_foreground" />
 </android.support.constraint.ConstraintLayout>

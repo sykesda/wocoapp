@@ -40,6 +40,7 @@ public class call_emergency_golf extends AppCompatActivity {
         exampleList.add(new ExampleItem(R.drawable.ic_maintenance, "Maintenance", "Click here to get to the maintenance request form."));
         exampleList.add(new ExampleItem(R.drawable.ic_nurse, "Health Services", "Click here to access the health services online portal"));
         exampleList.add(new ExampleItem(R.drawable.ic_technology, "IT Help Desk", "Click here to call the IT help desk."));
+        exampleList.add(new ExampleItem(R.drawable.ic_medical_emergency, "Emergency Alerts", "Click here to sign up for emergency alerts"));
 
         final ExampleItem golf_cart = exampleList.get(0);
         ExampleItem campus_safety = exampleList.get(1);
@@ -58,6 +59,12 @@ public class call_emergency_golf extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ExampleItem thing = exampleList.get(position);
+                if (position == 6){
+                    String url = "http://www.wofford.edu/newsroom/emergencyManagement/emergencyAlerts/";
+                    Intent signup = new Intent(Intent.ACTION_VIEW);
+                    signup.setData(Uri.parse(url));
+                    startActivity(signup);
+                }
                 if (position == 5){
                     makePhoneCall("8645974357");
                 }
