@@ -2,10 +2,9 @@ package edu.wofford.sykesda.wocoapptest;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainMenuLoggedIn extends AppCompatActivity {
@@ -83,8 +82,8 @@ public class MainMenuLoggedIn extends AppCompatActivity {
 //            }
 //        });
 
-        final ImageButton openLibrary = findViewById(R.id.laundryBtn);
-        openLibrary.setOnClickListener(new View.OnClickListener(){
+        final ImageButton openLaundry = findViewById(R.id.laundryBtn);
+        openLaundry.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openLaundry();
@@ -106,6 +105,23 @@ public class MainMenuLoggedIn extends AppCompatActivity {
                 openDonate();
             }
         });
+
+        final ImageButton openAvi = findViewById(R.id.aviBtn);
+        openAvi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAvi();
+            }
+        });
+
+        final ImageButton openStudy = findViewById(R.id.studyBtn);
+        openStudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStudy();
+            }
+        });
+
 
     }
 
@@ -166,7 +182,20 @@ public class MainMenuLoggedIn extends AppCompatActivity {
     }
 
     protected void openDonate(){
+        String url = "http://wofford.edu/supportwofford";
+        Intent donateIntent = new Intent(Intent.ACTION_VIEW);
+        donateIntent.setData(Uri.parse(url));
+        startActivity(donateIntent);
+    }
 
+    protected void openAvi(){
+        Intent aviIntent = new Intent(this, avi.class);
+        startActivity(aviIntent);
+    }
+
+    protected void openStudy(){
+        Intent studyIntent = new Intent(this, study.class);
+        startActivity(studyIntent);
     }
 
 

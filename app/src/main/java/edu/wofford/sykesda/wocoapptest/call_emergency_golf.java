@@ -1,13 +1,8 @@
 package edu.wofford.sykesda.wocoapptest;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +33,8 @@ public class call_emergency_golf extends AppCompatActivity {
         exampleList.add(new ExampleItem(R.drawable.ic_maintenance, "Maintenance", "Click here to get to the maintenance request form."));
         exampleList.add(new ExampleItem(R.drawable.ic_nurse, "Health Services", "Click here to access the health services online portal"));
         exampleList.add(new ExampleItem(R.drawable.ic_technology, "IT Help Desk", "Click here to call the IT help desk."));
+        exampleList.add(new ExampleItem(R.drawable.ic_medical_emergency, "Emergency Alerts", "Click here to sign up for emergency alerts"));
+
 
         final ExampleItem golf_cart = exampleList.get(0);
         ExampleItem campus_safety = exampleList.get(1);
@@ -55,6 +52,12 @@ public class call_emergency_golf extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ExampleItem thing = exampleList.get(position);
+                if (position == 6){
+                    String url = "http://www.wofford.edu/newsroom/emergencyManagement/emergencyAlerts/";
+                    Intent signup = new Intent(Intent.ACTION_VIEW);
+                    signup.setData(Uri.parse(url));
+                    startActivity(signup);
+                }
                 if (position == 5){
                     makePhoneCall("8645974357");
                 }
