@@ -63,7 +63,9 @@
             android:name=".class_schedule"
             android:label="@string/class_schedule_label" />
         <activity android:name=".settings" />
-        <activity android:name=".directoryExtraDetails" />
+        <activity
+            android:name=".directoryExtraDetails"
+            android:label="@string/directoryExtraDetails_label" />
         <activity
             android:name=".terrier_bucks"
             android:label="@string/terrier_bucks_label" />
@@ -83,8 +85,6 @@
             android:name=".campus_food_menu"
             android:label="@string/campus_food_menu_label" />
         <activity android:name=".cafes" />
-        <!-- <activity android:name=".avi" />
-        <activity android:name=".study" /> -->
         <activity android:name=".restaurants" />
         <activity android:name=".student_activity" />
         <activity android:name=".Restaurant_discount" />
@@ -112,9 +112,19 @@
         <activity
             android:name=".WNumber_Scanner"
             android:screenOrientation="portrait" />
-        <activity android:name=".WNumber_Manual" />
-        <activity android:name=".laundryRooms"
-            android:label="Laundry Rooms"></activity>
+        <activity
+            android:name=".WNumber_Manual"
+            android:label="@string/WNumber_Manual_label" />
+        <activity
+            android:name=".laundryRooms"
+            android:label="Laundry Rooms" />
+        <activity
+            android:name=".study"
+            android:label="@string/study_label" />
+        <activity
+            android:name=".avi"
+            android:label="@string/avi_label" />
+        <activity android:name=".thanku"></activity>
     </application>
 
 </manifest>
